@@ -2,41 +2,55 @@
   <div class="layout-padding">
     <q-stepper v-model="currentStep">
       <q-step name="first" title="Dados Pessoais">
-        <div class="row sm-gutter">
+        <div class="row xs-gutter">
           <div class="col-xs-12 col-sm-6">
-            <q-field :error="error" error-label="Por favor, preencha com nome válido">
-            <q-input
-                    v-model="form.name"
-                    class="no-margin"
-                    float-label="Nome"
-                    autofocus
-                    @blur="$v.form.name.$touch"
+            <q-field
+                    helper="Insira o nome completo do cliente"
                     :error="$v.form.name.$error"
+                    error-label="Por favor, preencha com nome válido">
+            <q-input
+                    max-length="100"
+                    v-model="form.name"
+                    float-label="Nome Completo"
+                    class="no-margin"
+                    @blur="$v.form.name.$touch"
             />
               </q-field>
           </div>
           <div class="col-xs-12 col-sm-3">
-            <q-field :error="error" error-label="Por favor, preencha este campo">
+            <q-field
+                    helper="Selecione o tipo de cliente"
+                    :error="$v.form.type.$error"
+                    error-label="Por favor, preencha este campo">
               <q-select
                       v-model="form.type"
                       float-label="Tipo de pessoa?"
                       @blur="$v.form.type.$touch"
-                      :error="$v.form.type.$error"
-                      radio
-                      :options="selectOptions"
+                      :options="options"
               />
             </q-field>
           </div>
           <div class="col-xs-12 col-sm-4">
-            <q-field :error="error" error-label="Por favor, preencha com nome válido">
-            <q-input
-                    v-model="documentComputed"
-                    class="no-margin"
-                    max-length="11"
-                    float-label="Nº Documento"
-                    @blur="$v.form.document.$touch"
+            <q-field
                     :error="$v.form.document.$error"
-            />
+                    error-label="Por favor, preencha um Nº Documento válido">
+              <template v-if="this.form.type === 1">
+                <q-input
+                        v-model="documentComputed"
+                        max-length="11"
+                        float-label="Nº Documento(CPF)"
+                        @blur="$v.form.document.$touch"
+                />
+              </template>
+              <template v-if="this.form.type === 2">
+                <q-input
+                        v-model="documentComputed"
+                        max-length="14"
+                        float-label="Nº Documento(CNPJ)"
+                        @blur="$v.form.document.$touch"
+                        :error="$v.form.document.$error"
+                />
+              </template>
             </q-field>
           </div>
           <div class="col-xs-12 col-sm-6">
@@ -53,7 +67,7 @@
             </q-field>
           </div>
             <div class="col-xs-12 col-sm-3">
-              <q-field :error="error" error-label="Por favor, preencha com número válido">
+              <q-field :error="error" error-label="Por favor, preencha com telefone válido">
               <q-input
                       type="text"
                       v-model="phoneComputed"
@@ -65,21 +79,27 @@
               </q-field>
             </div>
             <div class="col-xs-12 col-sm-3">
-              <q-field :error="error" error-label="Por favor, preencha com número válido">
+              <q-field
+                      :error="$v.form.phoneAlternative.$error"
+                      error-label="Por favor, preencha com telefone válido">
               <q-input
                       type="text"
                       max-length="15"
                       class="no-margin"
                       v-model="phoneAlternativeComputed"
                       @blur="$v.form.phoneAlternative.$touch"
-                      :error="$v.form.phoneAlternative.$error"
                       float-label="Telefone Alernativo"
               />
               </q-field>
           </div>
         </div>
         <q-stepper-navigation>
-          <q-btn color="primary" @click="currentStep = 'second'">Avançar</q-btn>
+          <template v-if="phoneComputed != ''">
+            <q-btn color="primary" @click="currentStep = 'second'">Avançar</q-btn>
+          </template>
+          <template v-if="phoneComputed === ''">
+            <q-btn disable color="primary" @click="currentStep = 'second'">Avançar</q-btn>
+          </template>
         </q-stepper-navigation>
       </q-step>
       <q-step name="second" title="Endereço">
@@ -130,7 +150,12 @@
         </div>
         <q-stepper-navigation>
           <q-btn color="primary" @click="currentStep = 'first'">Voltar</q-btn>
-          <q-btn color="green" @click="submit()">Salvar</q-btn>
+          <template v-if="phoneComputed === ''">
+            <q-btn color="green" @click="submit()">Salvar</q-btn>
+          </template>
+          <template v-if="phoneComputed != ''">
+            <q-btn color="green" @click="submit()">teste</q-btn>
+          </template>
         </q-stepper-navigation>
       </q-step>
     </q-stepper>
@@ -138,7 +163,7 @@
 </template>
 
 <script>
-  import { required, email, numeric, alpha, minLength } from 'vuelidate/lib/validators'
+  import { required, email, numeric, minLength } from 'vuelidate/lib/validators'
   var CPF = require('cpf_cnpj').CPF
   import PhoneFormatter from '../../services/my-formatter'
   var CNPJ = require('cpf_cnpj').CNPJ
@@ -170,27 +195,26 @@
       documentComputed: {
         get: function () {
           if (this.form && this.form.document) {
-            return CPF.format(this.form.document)
+            if (this.form.type === 1) {
+              return CPF.format(this.form.document)
+            }
+            else {
+              return CNPJ.format(this.form.document)
+            }
           }
           else {
             return ''
           }
         },
         set: function (newValue) {
-          this.form.document = CPF.strip(newValue)
-        }
-      },
-      cnpjComputed: {
-        get: function () {
-          if (this.form && this.form.document) {
-            return CNPJ.format(this.form.document)
+          if (this.form.type === 1) {
+            console.log(this.form.type)
+            this.form.document = CPF.strip(newValue)
           }
           else {
-            return ''
+            console.log(this.form.type)
+            this.form.document = CNPJ.strip(newValue)
           }
-        },
-        set: function (newValue) {
-          this.form.document = CNPJ.strip(newValue)
         }
       },
       phoneComputed: {
@@ -226,14 +250,14 @@
       return {
         error: false,
         currentStep: 'first',
-        selectOptions: [
+        options: [
           {
             label: 'Fisíca',
-            value: '1'
+            value: 1
           },
           {
             label: 'Jurídica',
-            value: '2'
+            value: 2
           }
         ],
         form: {
@@ -244,7 +268,7 @@
           city: '',
           zip_code: '',
           street: '',
-          type: '',
+          type: 1,
           neighborhood: '',
           number: '',
           complement: '',
@@ -256,7 +280,7 @@
     validations: {
       form: {
         email: { required, email },
-        name: { required, alpha, minLength: minLength(3) },
+        name: { required, minLength: minLength(3) },
         document: { required, numeric, minLength: minLength(11) },
         state: { required },
         city: { required },
@@ -285,21 +309,4 @@
 </script>
 
 <style scoped>
-  .error {
-    border-color: red;
-    background: #FDD;
-  }
-
-  .error:focus {
-    outline-color: #F99;
-  }
-
-  .valid {
-    border-color: #5A5;
-    background: #EFE;
-  }
-
-  .valid:focus {
-    outline-color: #8E8;
-  }
 </style>
