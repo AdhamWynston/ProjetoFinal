@@ -18,7 +18,7 @@
             </q-field>
           </div>
         </div>
-        <div class="row sm-gutter">
+        <div class="row xs-gutter">
           <div class="col-xs-12 col-sm-3">
             <q-field
                     :error="$v.form.person.type.$error"
@@ -234,6 +234,12 @@
     mixins: [statesMixin, formatMixin],
     methods: {
       submit () {
+        if (this.$v.form.$invalid === false) {
+          console.log('if')
+        }
+        else {
+          Toast.create.negative('Não foi possível realizar o cadastro!')
+        }
       }
     },
     computed: {
