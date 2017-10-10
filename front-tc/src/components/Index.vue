@@ -5,6 +5,8 @@
             :left-breakpoint="indexStore.leftBreakpoint"
             :right-breakpoint="indexStore.rightBreakpoint"
             :reveal="indexStore.reveal"
+            :left-class="{'bg-grey-9': false}"
+            :page-class="{'bg-grey-9': false}"
     >
         <q-toolbar slot="header" color="dark" class="glossy">
             <q-btn
@@ -34,7 +36,7 @@
         <div slot="left">
             <q-side-link item to="/" exact>
                 <q-item-side  icon="home" />
-                <q-item-main label="Home" />
+                <q-item-main text-color="white" label="Home" />
             </q-side-link>
             <q-side-link item to="/clients" exact>
                 <q-item-side  icon="ion-ios-people" />

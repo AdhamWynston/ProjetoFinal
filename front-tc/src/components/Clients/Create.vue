@@ -1,25 +1,26 @@
 <template>
   <div class="layout-padding">
     <q-stepper v-model="currentStep">
-      <q-step name="first" title="Dados Pessoais">
-        <div class="row xs-gutter">
-          <div class="col-xs-12 col-sm-6">
+      <q-step name="first" title="Dados Pessoais" color="light">
+        <div class="row-inline">
+        <div class="row sm-gutter self-center">
+          <div class="col-xs-12 col-sm-8">
             <q-field
-                    helper="Insira o nome completo do cliente"
                     :error="$v.form.person.name.$error"
                     error-label="Por favor, preencha com nome válido">
-            <q-input
-                    max-length="100"
-                    v-model="form.person.name"
-                    float-label="Nome Completo"
-                    class="no-margin"
-                    @blur="$v.form.person.name.$touch"
-            />
-              </q-field>
+              <q-input
+                      max-length="100"
+                      v-model="form.person.name"
+                      float-label="Nome Completo"
+                      class="no-margin"
+                      @blur="$v.form.person.name.$touch"
+              />
+            </q-field>
           </div>
+        </div>
+        <div class="row sm-gutter">
           <div class="col-xs-12 col-sm-3">
             <q-field
-                    helper="Selecione o tipo de cliente"
                     :error="$v.form.person.type.$error"
                     error-label="Por favor, preencha este campo">
               <q-select
@@ -53,59 +54,65 @@
               </template>
             </q-field>
           </div>
-          <div class="col-xs-12 col-sm-6">
-            <q-field :error="error" error-label="Por favor, preencha com E-mail válido">
-              <q-input
-                      v-model="form.person.email"
-                      type="email"
-                      class="no-margin"
-                      float-label="E-mail"
-                      @blur="$v.form.person.email.$touch"
-                      :error="$v.form.person.email.$error"
-                      required
-              />
-            </q-field>
+        </div>
+          <div class="row sm-gutter">
+            <div class="col-xs-12 col-sm-6">
+              <q-field :error="error" error-label="Por favor, preencha com E-mail válido">
+                <q-input
+                        v-model="form.person.email"
+                        type="email"
+                        class="no-margin"
+                        float-label="E-mail"
+                        @blur="$v.form.person.email.$touch"
+                        :error="$v.form.person.email.$error"
+                        required
+                />
+              </q-field>
+            </div>
           </div>
-            <div class="col-xs-12 col-sm-3">
-              <q-field :error="error" error-label="Por favor, preencha com telefone válido">
+        <div class="row sm-gutter">
+          <div class="col-xs-12 col-sm-3">
+            <q-field :error="error" error-label="Por favor, preencha com telefone válido">
               <q-input
                       type="text"
-                      v-model="phoneComputed"
+                      v-model="form.person.phone"
+                      v-on:keyup="phoneFormat(1)"
                       class="no-margin"
                       @blur="$v.form.person.phone.$touch"
                       :error="$v.form.person.phone.$error"
                       max-length="15"
                       float-label="Telefone" />
-              </q-field>
-            </div>
-            <div class="col-xs-12 col-sm-3">
-              <q-field
-                      :error="$v.form.person.phoneAlternative.$error"
-                      error-label="Por favor, preencha com telefone válido">
+            </q-field>
+          </div>
+          <div class="col-xs-12 col-sm-3">
+            <q-field
+                    :error="$v.form.person.phoneAlternative.$error"
+                    error-label="Por favor, preencha com telefone válido">
               <q-input
                       type="text"
                       max-length="15"
                       class="no-margin"
-                      v-model="phoneAlternativeComputed"
+                      v-on:keyup="phoneFormat(2)"
+                      v-model="form.person.phoneAlternative"
                       @blur="$v.form.person.phoneAlternative.$touch"
                       float-label="Telefone Alernativo"
               />
-              </q-field>
+            </q-field>
           </div>
         </div>
         <q-stepper-navigation>
             <q-btn :disabled="$v.form.person.$invalid"  color="primary" @click="currentStep = 'second'">Avançar</q-btn>
         </q-stepper-navigation>
+        </div>
       </q-step>
       <q-step name="second" title="Endereço">
-        <div class="xs-gutter">
-          <div class="row">
-            <div class="col-xs-12 col-sm-2">
+          <div class="row xs-gutter">
+            <div class="col-xs-12 col-sm-3">
               <q-field
                       :error="$v.form.address.zip_code.$error"
                       error-label="Por favor, preencha este campo">
                 <q-input
-                        v-on:keyup="buscarCEP"
+                        v-on:keyup="cepFormat"
                         max-length="9"
                         v-model="form.address.zip_code"
                         float-label="CEP"
@@ -115,8 +122,8 @@
               </q-field>
             </div>
           </div>
-          <div class="row">
-            <div class="col-xs-12 col-sm-4">
+          <div class="row sm-gutter">
+            <div class="col-xs-12 col-sm-5">
               <q-field
                       :error="$v.form.address.city.$error"
                       error-label="Por favor, preencha este campo">
@@ -129,9 +136,21 @@
                 />
               </q-field>
             </div>
+            <div class="col-xs-12 col-sm-3">
+              <q-field
+                      :error="$v.form.address.state.$error"
+                      error-label="Por favor, preencha este campo">
+                <q-select
+                        v-model="form.address.state"
+                        float-label="Estado"
+                        @blur="$v.form.address.state.$touch"
+                        :options="states"
+                />
+              </q-field>
+            </div>
           </div>
-          <div class="row">
-            <div class="col-xs-12 col-sm-4">
+          <div class="row sm-gutter">
+            <div class="col-xs-12 col-sm-5">
               <q-field
                       :error="$v.form.address.street.$error"
                       error-label="Por favor, preencha este campo">
@@ -140,15 +159,55 @@
                         v-model="form.address.street"
                         float-label="Logradouro"
                         class="no-margin"
-                        @blur="$v.form.person.name.$touch"
+                        @blur="$v.form.address.street.$touch"
+                />
+              </q-field>
+            </div>
+            <div class="col-xs-12 col-sm-3">
+              <q-field
+                      :error="$v.form.address.neighborhood.$error"
+                      error-label="Por favor, preencha este campo">
+                <q-input
+                        max-length="100"
+                        v-model="form.address.neighborhood"
+                        float-label="Bairro"
+                        class="no-margin"
+                        @blur="$v.form.address.neighborhood.$touch"
                 />
               </q-field>
             </div>
           </div>
+        <div class="row sm-gutter">
+          <div class="col-xs-12 col-sm-3">
+            <q-field
+                    :error="$v.form.address.number.$error"
+                    error-label="Por favor, preencha este campo">
+              <q-input
+                      max-length="100"
+                      v-model="form.address.number"
+                      float-label="Número"
+                      class="no-margin"
+                      @blur="$v.form.address.number.$touch"
+              />
+            </q-field>
+          </div>
+          <div class="col-xs-12 col-sm-5">
+            <q-field
+                    :error="$v.form.address.complement.$error"
+                    error-label="Por favor, preencha este campo">
+              <q-input
+                      max-length="60"
+                      v-model="form.address.complement"
+                      float-label="Complemento"
+                      class="no-margin"
+                      @blur="$v.form.address.complement.$touch"
+              />
+            </q-field>
+          </div>
         </div>
         <q-stepper-navigation>
           <q-btn color="primary" @click="currentStep = 'first'">Voltar</q-btn>
-            <q-btn color="green" @click="submit()">Salvar</q-btn>
+            <q-btn color="green" :disabled="$v.form.address.$invalid" @click="submit()">Salvar</q-btn>
         </q-stepper-navigation>
       </q-step>
     </q-stepper>
@@ -156,11 +215,10 @@
 </template>
 
 <script>
+  import { CNPJ, CPF } from 'cpf_cnpj'
   import { required, email, numeric, minLength } from 'vuelidate/lib/validators'
-  var CPF = require('cpf_cnpj').CPF
-  import axios from 'axios'
-  import PhoneFormatter from '../../services/my-formatter'
-  var CNPJ = require('cpf_cnpj').CNPJ
+  import statesMixin from '../../mixins/states.mixin'
+  import formatMixin from '../../mixins/format.mixin'
   import {
     QInput,
     QSelect,
@@ -173,24 +231,9 @@
     QStepperNavigation
   } from 'quasar'
   export default {
+    mixins: [statesMixin, formatMixin],
     methods: {
       submit () {
-      },
-      buscarCEP () {
-        if (this.form.address.zip_code.length === 8) {
-          this.form.address.zip_code = PhoneFormatter.modules.cepFormatter(this.form.address.zip_code)
-          if (/^[0-9]{5}-[0-9]{3}$/.test(this.form.address.zip_code)) {
-            axios.get('https://viacep.com.br/ws/' + this.form.address.zip_code + '/json/')
-              .then((response) => {
-                console.log(response.data)
-                this.form.address.city = response.data.localidade
-                this.form.address.state = response.data.uf
-              })
-          }
-        }
-      },
-      seila () {
-        console.log(CPF.isValid('01335065145'))
       }
     },
     computed: {
@@ -226,32 +269,6 @@
           else {
             this.form.person.document = CNPJ.strip(newValue)
           }
-        }
-      },
-      phoneComputed: {
-        get: function () {
-          if (this.form.person && this.form.person.phone) {
-            return PhoneFormatter.modules.phoneFormatter(this.form.person.phone)
-          }
-          else {
-            return ''
-          }
-        },
-        set: function (newValue) {
-          this.form.person.phone = PhoneFormatter.modules.strip(newValue)
-        }
-      },
-      phoneAlternativeComputed: {
-        get: function () {
-          if (this.form.person && this.form.person.phoneAlternative) {
-            return PhoneFormatter.modules.phoneFormatter(this.form.person.phoneAlternative)
-          }
-          else {
-            return ''
-          }
-        },
-        set: function (newValue) {
-          this.form.person.phoneAlternative = PhoneFormatter.modules.strip(newValue)
         }
       }
     },
@@ -296,9 +313,9 @@
           email: { required, email },
           name: { required, minLength: minLength(3) },
           document: { required, numeric, minLength: minLength(11) },
-          phone: { required, numeric },
+          phone: { required, minLength: minLength(11) },
           type: { required },
-          phoneAlternative: { numeric, minLength: minLength(11) }
+          phoneAlternative: { minLength: minLength(11) }
         },
         address: {
           state: { required },
