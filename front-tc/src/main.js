@@ -27,6 +27,7 @@ Vue.use(Vuex)
 Vue.use(Auth)
 Vue.use(VueResource)
 Vue.http.options.root = process.env.SERVER
+Vue.http.options.emulateJSON = true
 Vue.use(Vuelidate, {
   locale: 'pt_BR'
 })
