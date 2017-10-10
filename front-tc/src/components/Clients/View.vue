@@ -4,20 +4,9 @@
       <div class="col-auto">
       <h5>
        Informações do Cliente
-        <q-btn @click="openModal('/clients/' + client.id + '/edit')" round color="orange">
-          <q-icon name="mode_edit" />
-        </q-btn>
       </h5>
       </div>
     </div>
-    <q-modal
-            ref="basicModal"
-            position="bottom"
-            :content-css="{minWindth: '1000px', minHeight: '100px', padding: '10px'}">
-    <router-view />
-      <hr>
-      <q-btn class="small" color="blue" @click="$refs.basicModal.close()">Fechar</q-btn>
-    </q-modal>
     <div class="row">
       <div class="col-xs-12 col-sm-8 col-md-8">
     <q-list link>
@@ -143,15 +132,20 @@
     </q-list>
       </div>
     </div>
+    <q-fixed-position corner="bottom-left" :offset="[16, 16]">
+      <q-btn  @click="goEdit()" round icon="ion-edit" color="orange">
+      </q-btn>
+    </q-fixed-position>
   </div>
 </template>
 
 <script>
   /* eslint-disable indent */
-
-  import moment from 'moment'
-
+import moment from 'moment'
 import {
+  QFixedPosition,
+  QFab,
+  QFabAction,
   QModal,
   QStepper,
   QStep,
@@ -176,7 +170,6 @@ import {
   QCardActions,
   QCardSeparator,
   QCardMain,
-  QFab,
   QToolbar,
   QToolbarTitle,
   QSearch,
@@ -185,11 +178,11 @@ import {
   QBtn,
   QIcon,
   QSideLink,
-  QFabAction,
   QTooltip,
   QScrollArea} from 'quasar'
 export default {
   components: {
+    QFixedPosition,
     QCheckbox,
     QModal,
     QModalLayout,
@@ -248,14 +241,6 @@ export default {
     }
   },
   methods: {
-    openModal (url) {
-      this.$router.push(url)
-      this.$refs.basicModal.open()
-    },
-    closeModal () {
-      this.$router.push('/clients/' + this.client.id)
-    }
-  },
     back () {
       window.history.go(-1)
     },
@@ -263,11 +248,9 @@ export default {
       this.clientCreated = moment().format('DD/MM/YYYY')
       return this.clientCreated
     },
-    goEditClients () {
-      this.$router.push('/clients/1/edit')
-    },
-    goDesactiveClients () {
-    this.$router.push('/clients/1/remove')
+    goEdit () {
+      this.$router.push('/clients/' + this.client.id + '/edit')
+    }
   }
 }
 </script>

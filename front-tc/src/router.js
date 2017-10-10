@@ -31,11 +31,9 @@ export default new VueRouter({
         {
           path: '/clients/:id',
           component: load('Clients/View'),
-          name: 'clients.view',
-          children: [
-            { path: 'edit', component: load('Clients/Edit'), name: 'clients.edit', meta: { auth: true } }
-          ]
+          name: 'clients.view'
         },
+        { path: '/clients/:id/edit', component: load('Clients/Edit'), name: 'clients.edit', meta: { auth: true } },
         { path: '/admin/users', component: load('Users/List'), name: 'admin.users.list', meta: { auth: true } }
       ]
     },
