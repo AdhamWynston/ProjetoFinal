@@ -15,12 +15,14 @@ export default {
       }
     },
     phoneFormat (value) {
-      if (this.client.phone.length >= 10) {
-        if (value === 1) {
-          this.client.phone = PhoneFormatter.modules.phoneFormatter(this.client.phone)
-        }
-        else {
-          this.client.phoneAlternative = PhoneFormatter.modules.phoneFormatter(this.client.phoneAlternative)
+      if (this.client.phone) {
+        if (this.client.phone.length >= 10) {
+          if (value === 1) {
+            this.client.phone = PhoneFormatter.modules.phoneFormatter(this.client.phone)
+          }
+          else {
+            this.client.phoneAlternative = PhoneFormatter.modules.phoneFormatter(this.client.phoneAlternative)
+          }
         }
       }
     }

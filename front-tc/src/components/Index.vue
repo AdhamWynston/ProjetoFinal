@@ -9,9 +9,10 @@
             :page-class="{'bg-grey-9': false}"
     >
         <Toolbar slot="header"></Toolbar>
-        <q-tabs slot="navigation" class="glossy" color="dark" v-if="!indexStore.hideTabs">
+        <q-tabs slot="navigation" color="dark" v-if="!indexStore.hideTabs">
             <q-route-tab slot="title" icon="home" to="/" label="Home" />
             <q-route-tab slot="title" icon="ion-ios-people" to="/clients" label="Clientes" />
+            <q-route-tab slot="title" icon="ion-ios-people" to="/employees" label="Funcionários" />
             <template v-if="isAdministrator">
                 <q-route-tab slot="title" icon="supervisor_account" to="/users" label="Usuários" />
             </template>
