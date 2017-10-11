@@ -25,19 +25,20 @@ export default new VueRouter({
       path: '/',
       component: load('Index'),
       children: [
-        { path: '/', component: load('Charts'), name: 'index', meta: { auth: true } },
-        { path: '/clients', component: load('Clients/List'), name: 'clients.list', meta: { auth: true } },
-        { path: '/clients/create', component: load('Clients/Create'), name: 'clients.create', meta: { auth: true } },
+        { path: '', component: load('Home') },
+        { path: '/home', component: load('Home'), name: 'home', meta: { auth: true } },
+        { path: '/clients', component: load('modules/Clients/List'), name: 'clients.list', meta: { auth: true } },
+        { path: '/clients/create', component: load('modules/Clients/Create'), name: 'clients.create', meta: { auth: true } },
         {
           path: '/clients/:id',
-          component: load('Clients/View'),
+          component: load('modules/Clients/View'),
           name: 'clients.view'
         },
-        { path: '/clients/:id/edit', component: load('Clients/Edit'), name: 'clients.edit', meta: { auth: true } },
-        { path: '/admin/users', component: load('Users/List'), name: 'admin.users.list', meta: { auth: true } }
+        { path: '/clients/:id/edit', component: load('modules/Clients/Edit'), name: 'clients.edit', meta: { auth: true } },
+        { path: '/admin/users', component: load('modules/Users/List'), name: 'admin.users.list', meta: { auth: true } }
       ]
     },
-    { path: '/login', component: load('Auth/Login'), name: 'login' },
+    { path: '/login', component: load('modules/Auth/Login'), name: 'login' },
     // Always leave this last one
     { path: '*', component: load('Error404') } // Not found
   ]

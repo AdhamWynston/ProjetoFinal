@@ -1,3 +1,4 @@
+import {CPF, CNPJ} from 'cpf_cnpj'
 export default {
   data () {
     return {
@@ -30,7 +31,7 @@ export default {
           rows: 'Registros por página',
           selected: {
             singular: 'item selecionado.',
-            width: '20px'
+            width: '10px'
           }
         }
       },
@@ -45,32 +46,40 @@ export default {
         {
           label: 'Nº Documento',
           field: 'document',
-          width: '60px',
+          width: '50px',
           sort: false,
-          filter: true
+          filter: true,
+          format (value) {
+            value = CPF.strip(value)
+            if (value.length === 11) {
+              return CPF.format(value)
+            }
+            return CNPJ.format(value)
+          }
         },
         {
           label: 'Telefone',
           field: 'phone',
-          width: '60px',
+          width: '50px',
           sort: false,
           filter: true
         },
         {
           label: 'Status',
           field: 'status',
+          filter: true,
           format (value) {
             if (value === 1) {
               return '<i class="material-icons text-positive">check_circle</i> Ativado'
             }
-            return '<i class="material-icons text-danger">warning</i> Desativado'
+            return '<i class="material-icons text-negative">block</i> Desativado'
           },
-          width: '30px'
+          width: '40px'
         },
         {
           label: 'Cadastrado em',
           field: 'created_at',
-          width: '60px',
+          width: '50px',
           sort: true,
           filter: true
         }

@@ -103,7 +103,7 @@
 <script>
   import { required, email } from 'vuelidate/lib/validators'
   var CPF = require('cpf_cnpj').CPF
-  import PhoneFormatter from '../../services/my-formatter'
+  import PhoneFormatter from '../../../services/my-formatter'
   var CNPJ = require('cpf_cnpj').CNPJ
   import {
     QInput,

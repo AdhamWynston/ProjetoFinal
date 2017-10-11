@@ -101,7 +101,7 @@
             </div>
           </div>
           <q-stepper-navigation>
-            <q-btn :disabled="$v.client.$invalid"  color="primary" @click="currentStep = 'second'">Avançar</q-btn>
+            <q-btn  color="primary" @click="currentStep = 'second'">Avançar</q-btn>
           </q-stepper-navigation>
         </div>
       </q-step>
@@ -207,7 +207,7 @@
         </div>
         <q-stepper-navigation>
           <q-btn color="primary" @click="currentStep = 'first'">Voltar</q-btn>
-          <q-btn color="green" :disabled="$v.client.$invalid" @click="save()">Salvar</q-btn>
+          <q-btn color="green" :disabled="$v.client.$invalid" @click="submit()">Salvar</q-btn>
         </q-stepper-navigation>
       </q-step>
     </q-stepper>
@@ -216,9 +216,9 @@
 
 <script>
   import { CNPJ, CPF } from 'cpf_cnpj'
-  import validationClientMixin from '../../mixins/validationClient.mixin'
-  import statesMixin from '../../mixins/states.mixin'
-  import formatMixin from '../../mixins/format.mixin'
+  import validationClientMixin from '../../../mixins/validationClient.mixin'
+  import statesMixin from '../../../mixins/states.mixin'
+  import formatMixin from '../../../mixins/format.mixin'
   import {
     QInput,
     QSelect,
@@ -233,35 +233,19 @@
   export default {
     mixins: [statesMixin, formatMixin, validationClientMixin],
     methods: {
-      save () {
+      submit () {
         if (this.$v.client.$invalid === false) {
-          let data = {
-            name: this.client.name,
-            document: this.client.document,
-            state: this.client.state,
-            city: this.client.city,
-            zip_code: this.client.zip_code,
-            street: this.client.street,
-            type: this.client.type,
-            neighborhood: this.client.neighborhood,
-            number: this.client.number,
-            complement: this.client.complement,
-            phone: this.client.phone,
-            phoneAlternative: this.client.phoneAlternative,
-            email: this.client.email
-          }
-          this.$store.dispatch('clientUpdate', {id: this.$route.params.id, data: data})
+          this.$store.dispatch('clientInsert', this.client)
             .then(() => {
-              this.$store.dispatch('clientsGet', this.$route.params.id)
               this.$router.push('/clients')
               Toast.create.positive({
-                html: 'Atualizado com sucesso',
+                html: 'Cliente cadastrado com sucesso',
                 icon: 'done'
               })
             })
             .catch(() => {
               Toast.create.negative({
-                html: 'Não pode ser atualizado',
+                html: 'Não pode ser cadastrado',
                 icon: 'cancel'
               })
             })
@@ -272,9 +256,6 @@
       }
     },
     computed: {
-      client () {
-        return this.$store.state.clients.one || {}
-      },
       documentComputed: {
         get: function () {
           if (this.client && this.client.document) {
@@ -313,7 +294,22 @@
     data () {
       return {
         error: false,
-        currentStep: 'first'
+        currentStep: 'first',
+        client: {
+          email: '',
+          name: '',
+          document: '',
+          phone: '',
+          type: '',
+          phoneAlternative: '',
+          state: '',
+          city: '',
+          zip_code: '',
+          street: '',
+          neighborhood: '',
+          number: '',
+          complement: ''
+        }
       }
     },
     components: {

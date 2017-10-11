@@ -17,14 +17,12 @@ import Vuex from 'vuex'
 import VuexStore from './vuex/store'
 import moment from 'moment'
 import VueResource from 'vue-resource'
-import Auth from './Packages/Auth'
 import JwtToken from './services/jwt-token'
 import Vuelidate from 'vuelidate'
 
 Vue.config.productionTip = false
 Vue.use(Quasar) // Install Quasar Framework
 Vue.use(Vuex)
-Vue.use(Auth)
 Vue.use(VueResource)
 Vue.http.options.root = process.env.SERVER
 Vue.http.options.emulateJSON = true
@@ -63,7 +61,7 @@ router.beforeEach((to, from, next) => {
 router.beforeEach((to, from, next) => {
   if (store.state.auth.check) {
     if (store.getters.isCoordinator && to.name.startsWith('admin')) {
-      return router.push('/')
+      return router.push('/home')
     }
   }
   next()

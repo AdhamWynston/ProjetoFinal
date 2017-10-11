@@ -55,7 +55,7 @@ export default {
       this.$store.dispatch('login', this.user)
         .then(() => {
           this.closeLoading()
-          this.$router.push('/')
+          this.$router.push('/home')
           Toast.create.info('Seja bem vindo')
         })
         .catch((response) => {

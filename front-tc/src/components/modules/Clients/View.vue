@@ -113,8 +113,8 @@
               <q-item-tile label>Cliente está ativo?</q-item-tile>
               <q-item-tile sublabel>Selecione se sim</q-item-tile>
             </q-item-main>
-            <q-item-side>
-              <q-checkbox v-model="checked_one" />
+            <q-item-side right>
+              <q-toggle color="secondary" v-model="client.status" />
             </q-item-side>
           </q-item>
           <q-item-separator />
@@ -223,6 +223,7 @@ export default {
   data () {
     return {
       checked_one: true,
+      list2: true,
       checked_two: true,
       clientCreated: ''
     }
@@ -237,7 +238,7 @@ export default {
   },
   filters: {
     moment: function (date) {
-      return moment(date).format('DD/MM/YYYY hh:mm')
+      return moment(date).format('DD/MM/YYYY HH:mm')
     }
   },
   methods: {

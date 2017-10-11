@@ -22,7 +22,7 @@
 
 <script>
   /* eslint-disable no-unreachable */
-  import dataTableClientMixin from '../../mixins/dataTableClient.mixin'
+  import dataTableClientMixin from '../../../mixins/dataTableClient.mixin'
   import moment from 'moment'
   import {
     QIcon,
@@ -81,7 +81,7 @@
     },
     filters: {
       moment: function (date) {
-        return moment(date).format('DD/MM/YYYY hh:mm')
+        return moment(date).format('DD/MM/YYYY HH:mm')
       }
     },
     watch: {

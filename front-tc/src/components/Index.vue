@@ -8,24 +8,7 @@
             :left-class="{'bg-grey-9': false}"
             :page-class="{'bg-grey-9': false}"
     >
-        <q-toolbar slot="header" color="dark" class="glossy">
-            <q-btn
-                    flat
-                    @click="$refs.layout.toggleLeft()"
-            >
-                <q-icon name="menu" />
-            </q-btn>
-            <q-toolbar-title>
-                sgENV
-                <div slot="subtitle">Sistema Gerenciador de Eventos</div>
-            </q-toolbar-title>
-            <template v-if=" this.$route.name != 'index' " >
-            <q-btn class="within-iframe-hide" flat @click="back()" style="margin-right: 5px">
-                <q-icon name="keyboard_arrow_left" />
-                Voltar
-            </q-btn>
-            </template>
-        </q-toolbar>
+        <Toolbar slot="header"></Toolbar>
         <q-tabs slot="navigation" class="glossy" color="dark" v-if="!indexStore.hideTabs">
             <q-route-tab slot="title" icon="home" to="/" label="Home" />
             <q-route-tab slot="title" icon="ion-ios-people" to="/clients" label="Clientes" />
@@ -33,30 +16,15 @@
                 <q-route-tab slot="title" icon="supervisor_account" to="/users" label="Usuários" />
             </template>
         </q-tabs>
-        <div slot="left">
-            <q-side-link item to="/" exact>
-                <q-item-side  icon="home" />
-                <q-item-main text-color="white" label="Home" />
-            </q-side-link>
-            <q-side-link item to="/clients" exact>
-                <q-item-side  icon="ion-ios-people" />
-                <q-item-main label="Clientes" />
-            </q-side-link>
-            <q-side-link item to="/users" exact>
-                <q-item-side  icon="supervisor_account" />
-                <q-item-main label="Usuários" />
-            </q-side-link>
-            <q-item link @click="logout()">
-                <q-item-side  icon="ion-android-exit" />
-                <q-item-main label="Sair" />
-            </q-item>
-        </div>
+        <Drawer slot="left"></Drawer>
             <router-view />
     </q-layout>
 </template>
 
 <script>
     /* eslint-disable indent */
+    import Toolbar from './common/Toolbar.vue'
+    import Drawer from './common/Drawer.vue'
     import indexStore from './index-store'
     import authMixin from '../mixins/auth.mixin'
     import {
@@ -71,6 +39,7 @@
         Ripple,
         QRouteTab,
         QList,
+        Events,
         QListHeader,
         QItem,
         QItemSide,
@@ -80,9 +49,12 @@
     export default {
         name: 'index',
         components: {
+            Toolbar,
+            Drawer,
             Loading,
             Ripple,
             QSideLink,
+            Events,
             QLayout,
             QToolbar,
             QTabs,
@@ -103,9 +75,6 @@
           }
         },
       methods: {
-        closeLoading () {
-          setTimeout(Loading.hide, 600)
-        },
         back () {
           window.history.go(-1)
         },
@@ -119,6 +88,11 @@
             .then(goToLogin)
             .catch(goToLogin)
         }
+      },
+      mounted () {
+        Events.$on('openDrawer', () => {
+          this.$refs.layout.toggleLeft()
+        })
       },
         computed: {
             list () {
