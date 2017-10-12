@@ -16,9 +16,28 @@ export default {
   },
   validations: {
     client: {
-      email: { required, email },
+      email: { required,
+        email,
+        async isUnique (value) {
+          if (value === '') {
+            return true
+          }
+          const response = await fetch(`http://127.0.0.1:8000/api/unique/clients?where[email]=${value}`)
+          return Boolean(await response.json())
+        }
+      },
       name: { required, minLength: minLength(3) },
-      document: { required, numeric, minLength: minLength(11) },
+      document: { required,
+        numeric,
+        minLength: minLength(11),
+        async isUnique (value) {
+          if (value === '') {
+            return true
+          }
+          const response = await fetch(`http://127.0.0.1:8000/api/unique/clients?where[document]=${value}`)
+          return Boolean(await response.json())
+        }
+      },
       phone: { required, minLength: minLength(11) },
       type: { required },
       phoneAlternative: { minLength: minLength(11) },
@@ -31,9 +50,27 @@ export default {
       complement: { required }
     },
     employee: {
-      email: { required, email },
+      email: { required,
+        email,
+        async isUnique (value) {
+          if (value === '') {
+            return true
+          }
+          const response = await fetch(`http://127.0.0.1:8000/api/unique/employees?where[email]=${value}`)
+          return Boolean(await response.json())
+        }
+      },
       name: { required, minLength: minLength(3) },
-      document: { required, numeric, minLength: minLength(11) },
+      document: { required,
+        numeric,
+        minLength: minLength(11),
+        async isUnique (value) {
+          if (value === '') {
+            return true
+          }
+          const response = await fetch(`http://127.0.0.1:8000/api/unique/clients?where[document]=${value}`)
+          return Boolean(await response.json())
+        }},
       phone: { required, minLength: minLength(11) },
       phoneAlternative: { minLength: minLength(11) },
       state: { required },

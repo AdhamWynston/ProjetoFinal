@@ -7,7 +7,7 @@
             <div class="col-xs-12 col-sm-8">
               <q-field
                       :error="$v.client.name.$error"
-                      error-label="Por favor, preencha com nome válido">
+                      error-label="Por favor, preencha este campo">
                 <q-input
                         max-length="100"
                         v-model="client.name"
@@ -34,7 +34,7 @@
             <div class="col-xs-12 col-sm-4">
               <q-field
                       :error="$v.client.document.$error"
-                      error-label="Por favor, preencha um Nº Documento válido">
+                      error-label="Este CPF já está cadastrado ou é inválido!">
                 <template v-if="this.client.type === 1">
                   <q-input
                           v-model="documentComputed"
@@ -57,7 +57,7 @@
           </div>
           <div class="row sm-gutter">
             <div class="col-xs-12 col-sm-6">
-              <q-field :error="error" error-label="Por favor, preencha com E-mail válido">
+              <q-field :error="error" error-label="Este E-mail já existe ou está inválido">
                 <q-input
                         v-model="client.email"
                         type="email"
@@ -112,7 +112,7 @@
                     :error="$v.client.zip_code.$error"
                     error-label="Por favor, preencha este campo">
               <q-input
-                      v-on:keyup="cepFormat"
+                      v-on:keyup="cep"
                       max-length="9"
                       v-model="client.zip_code"
                       float-label="CEP"
@@ -233,6 +233,11 @@
   export default {
     mixins: [statesMixin, formatMixin, validationClientMixin],
     methods: {
+      cep () {
+        if (this.client.zip_code.length === 8) {
+          this.client.zip_code = this.cepFormat(this.client.zip_code)
+        }
+      },
       submit () {
         if (this.$v.client.$invalid === false) {
           this.$store.dispatch('clientInsert', this.client)
