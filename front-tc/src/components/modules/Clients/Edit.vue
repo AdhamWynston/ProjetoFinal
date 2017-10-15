@@ -1,5 +1,5 @@
 <template>
-  <div class="layout-padding">
+  <div class="layout-padding layout-view">
     <q-stepper v-model="currentStep">
       <q-step name="first" title="Dados Pessoais" color="light">
         <div class="row-inline">

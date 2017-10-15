@@ -114,7 +114,7 @@
               <q-item-tile sublabel>Selecione se sim</q-item-tile>
             </q-item-main>
             <q-item-side right>
-              <q-toggle color="secondary" v-model="client.status" />
+              <q-toggle @input="alterChecked" color="secondary" v-model="checked" />
             </q-item-side>
           </q-item>
           <q-item-separator />
@@ -146,6 +146,7 @@ import {
   QFixedPosition,
   QFab,
   QFabAction,
+  Toast,
   QModal,
   QStepper,
   QStep,
@@ -216,19 +217,22 @@ export default {
     QIcon,
     QItemSide,
     QItemMain,
+    Toast,
     QSideLink,
     QListHeader,
     QScrollArea
   },
   data () {
     return {
-      checked_one: true,
       list2: true,
       checked_two: true,
       clientCreated: ''
     }
   },
   computed: {
+    checked () {
+      return this.client.status === 1
+    },
     client () {
       return this.$store.state.clients.one || {}
     }
@@ -242,6 +246,32 @@ export default {
     }
   },
   methods: {
+    alterChecked () {
+      let check
+      if (this.client.status === 1) {
+        check = 0
+      }
+      else {
+        check = 1
+      }
+      let data = {
+        status: check
+      }
+      this.$store.dispatch('clientUpdate', {id: this.client.id, data: data})
+        .then(() => {
+          this.$store.dispatch('clientsGet', this.client.id)
+          Toast.create.positive({
+            html: 'Status alterado com sucesso!',
+            icon: 'done'
+          })
+        })
+        .catch(() => {
+          Toast.create.negative({
+            html: 'Não foi possível alterar o status',
+            icon: 'cancel'
+          })
+        })
+    },
     back () {
       window.history.go(-1)
     },

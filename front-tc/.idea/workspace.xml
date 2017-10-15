@@ -9,6 +9,26 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="DockManager">
+    <window id="2">
+      <content type="file-editors">
+        <state>
+          <leaf>
+            <file leaf-file-name="List.vue" pinned="false" current-in-tab="true">
+              <entry file="file://$PROJECT_DIR$/src/components/modules/Clients/List.vue">
+                <provider selected="true" editor-type-id="text-editor">
+                  <state relative-caret-position="230">
+                    <caret line="28" column="0" lean-forward="false" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="19" />
+                    <folding />
+                  </state>
+                </provider>
+              </entry>
+            </file>
+          </leaf>
+        </state>
+      </content>
+    </window>
+  </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileColors">
     <fileColor scope="Non-Project Files (Material Default)" color="2E3C43" />
@@ -19,12 +39,12 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file leaf-file-name="List.vue" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/components/modules/Employees/List.vue">
+        <entry file="file://$PROJECT_DIR$/src/components/modules/Users/List.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="23">
-              <caret line="64" column="14" lean-forward="false" selection-start-line="64" selection-start-column="14" selection-end-line="64" selection-end-column="14" />
+            <state relative-caret-position="161">
+              <caret line="43" column="21" lean-forward="false" selection-start-line="43" selection-start-column="21" selection-end-line="43" selection-end-column="21" />
               <folding>
-                <element signature="e#794#870#0" expanded="true" />
+                <element signature="e#791#818#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -33,60 +53,28 @@
       <file leaf-file-name="Create.vue" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/modules/Clients/Create.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-5819">
-              <caret line="8" column="52" lean-forward="true" selection-start-line="8" selection-start-column="52" selection-end-line="8" selection-end-column="52" />
+            <state relative-caret-position="46">
+              <caret line="2" column="19" lean-forward="false" selection-start-line="2" selection-start-column="19" selection-end-line="2" selection-end-column="19" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="validationClient.mixin.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/mixins/validationClient.mixin.js">
+      <file leaf-file-name="dataTableUser.mixin.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/mixins/dataTableUser.mixin.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="234">
-              <caret line="65" column="10" lean-forward="false" selection-start-line="65" selection-start-column="10" selection-end-line="65" selection-end-column="10" />
+            <state relative-caret-position="-226">
+              <caret line="55" column="34" lean-forward="false" selection-start-line="55" selection-start-column="34" selection-end-line="55" selection-end-column="34" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Index.vue" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/components/Index.vue">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="23">
-              <caret line="14" column="99" lean-forward="false" selection-start-line="14" selection-start-column="99" selection-end-line="14" selection-end-column="99" />
-              <folding>
-                <element signature="e#1055#1097#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="employees.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/vuex/modules/employees.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="487">
-              <caret line="35" column="4" lean-forward="false" selection-start-line="35" selection-start-column="4" selection-end-line="35" selection-end-column="4" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="router.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="router.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/router.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="188">
-              <caret line="44" column="27" lean-forward="false" selection-start-line="44" selection-start-column="27" selection-end-line="44" selection-end-column="27" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Edit.vue" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/components/modules/Employees/Edit.vue">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="462">
-              <caret line="159" column="0" lean-forward="false" selection-start-line="159" selection-start-column="0" selection-end-line="159" selection-end-column="54" />
+            <state relative-caret-position="349">
+              <caret line="45" column="67" lean-forward="false" selection-start-line="45" selection-start-column="63" selection-end-line="45" selection-end-column="67" />
               <folding />
             </state>
           </provider>
@@ -97,8 +85,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Vue file" />
         <option value="JavaScript File" />
+        <option value="Vue file" />
       </list>
     </option>
   </component>
@@ -111,18 +99,21 @@
       <find>m</find>
       <find>moment</find>
       <find>goToLogin</find>
-      <find>goToLogin</find>
       <find>Client</find>
       <find>$v.client</find>
       <find>person</find>
       <find>name</find>
+      <find>xs</find>
+      <find>employee</find>
+      <find>status</find>
       <find>clients</find>
       <find>client</find>
     </findStrings>
     <replaceStrings>
-      <replace>client</replace>
       <replace>$v.form.person</replace>
+      <replace>sm</replace>
       <replace>employee</replace>
+      <replace>client</replace>
     </replaceStrings>
     <dirStrings>
       <dir>C:\laragon\www\Projeto\front-tc\src</dir>
@@ -149,24 +140,30 @@
         <option value="$PROJECT_DIR$/src/components/common/Toolbar.vue" />
         <option value="$PROJECT_DIR$/src/components/modules/Auth/Login.vue" />
         <option value="$PROJECT_DIR$/src/main.js" />
-        <option value="$PROJECT_DIR$/src/components/common/Drawer.vue" />
         <option value="$PROJECT_DIR$/src/mixins/dataTableEmployee.mixin.js" />
-        <option value="$PROJECT_DIR$/src/router.js" />
         <option value="$PROJECT_DIR$/src/vuex/modules/employees.js" />
         <option value="$PROJECT_DIR$/src/components/modules/Employees/List.vue" />
-        <option value="$PROJECT_DIR$/src/vuex/store.js" />
         <option value="$PROJECT_DIR$/src/mixins/employeeFormat.mixin.js" />
         <option value="$PROJECT_DIR$/src/mixins/validationEmployee.js" />
-        <option value="$PROJECT_DIR$/src/mixins/validationEmployee.mixin.js" />
-        <option value="$PROJECT_DIR$/src/components/modules/Employees/View.vue" />
-        <option value="$PROJECT_DIR$/src/components/modules/Clients/Edit.vue" />
-        <option value="$PROJECT_DIR$/src/components/Index.vue" />
-        <option value="$PROJECT_DIR$/src/components/modules/Employees/Edit.vue" />
-        <option value="$PROJECT_DIR$/src/components/modules/Employees/Create.vue" />
         <option value="$PROJECT_DIR$/src/mixins/format.bkp.js" />
         <option value="$PROJECT_DIR$/src/mixins/format.mixin.js" />
-        <option value="$PROJECT_DIR$/src/components/modules/Clients/Create.vue" />
         <option value="$PROJECT_DIR$/src/mixins/validationClient.mixin.js" />
+        <option value="$PROJECT_DIR$/src/components/modules/Employees/Create.vue" />
+        <option value="$PROJECT_DIR$/src/components/modules/Employees/Edit.vue" />
+        <option value="$PROJECT_DIR$/src/mixins/validationEmployee.mixin.js" />
+        <option value="$PROJECT_DIR$/src/components/modules/Clients/Edit.vue" />
+        <option value="$PROJECT_DIR$/src/router.js" />
+        <option value="$PROJECT_DIR$/src/components/modules/Clients/View.vue" />
+        <option value="$PROJECT_DIR$/src/components/modules/Employees/View.vue" />
+        <option value="$PROJECT_DIR$/src/components/Index.vue" />
+        <option value="$PROJECT_DIR$/src/components/common/Drawer.vue" />
+        <option value="$PROJECT_DIR$/src/vuex/store.js" />
+        <option value="$PROJECT_DIR$/src/vuex/modules/users.js" />
+        <option value="$PROJECT_DIR$/src/vuex/modules/auth.js" />
+        <option value="$PROJECT_DIR$/src/components/modules/Users/DataUsers.vue" />
+        <option value="$PROJECT_DIR$/src/mixins/dataTableUser.mixin.js" />
+        <option value="$PROJECT_DIR$/src/components/modules/Users/List.vue" />
+        <option value="$PROJECT_DIR$/src/components/modules/Clients/Create.vue" />
       </list>
     </option>
   </component>
@@ -203,7 +200,6 @@
     </navigator>
     <panes>
       <pane id="Scope" />
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -316,11 +312,12 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../laravel-tc" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.path.for.package.eslint" value="project" />
     <property name="nodejs_interpreter_path" value="C:/Program Files/nodejs/node" />
     <property name="node.js.detected.package.eslint" value="true" />
@@ -328,15 +325,15 @@
     <property name="standardjs.codestyle.accepted" value="true" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\laragon\www\Projeto\front-tc\src\components\modules" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\laragon\www\Projeto\front-tc\src\vuex\modules" />
       <recent name="C:\laragon\www\Projeto\front-tc\src\mixins" />
+      <recent name="C:\laragon\www\Projeto\front-tc\src\vuex\modules" />
       <recent name="C:\laragon\www\Projeto\front-tc\src\components\modules\Employees" />
       <recent name="C:\laragon\www\Projeto\front-tc\src" />
       <recent name="C:\laragon\www\Projeto\front-tc\node_modules" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\laragon\www\Projeto\front-tc\src\components\modules" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -435,12 +432,13 @@
       <workItem from="1507675205771" duration="4767000" />
       <workItem from="1507693204091" duration="9584000" />
       <workItem from="1507769295255" duration="5955000" />
-      <workItem from="1507795604241" duration="5972000" />
+      <workItem from="1507795604241" duration="14907000" />
+      <workItem from="1507937914285" duration="12236000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="74124000" />
+    <option name="totallyTimeSpent" value="95295000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="0" width="1378" height="735" extended-state="0" />
@@ -475,47 +473,11 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="10" />
+      <option name="time" value="11" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/node_modules/raphael/raphael.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="644">
-          <caret line="35" column="14" lean-forward="false" selection-start-line="35" selection-start-column="14" selection-end-line="35" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/Hello.vue" />
-    <entry file="file://$PROJECT_DIR$/node_modules/vuelidate/lib/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/node_modules/vuex/types/index.d.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="229">
-          <caret line="16" column="2" lean-forward="false" selection-start-line="16" selection-start-column="2" selection-end-line="16" selection-end-column="2" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-201">
-          <caret line="9" column="26" lean-forward="false" selection-start-line="9" selection-start-column="26" selection-end-line="9" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/build/webpack.base.conf.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="207">
-          <caret line="96" column="7" lean-forward="false" selection-start-line="96" selection-start-column="7" selection-end-line="96" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/component.vue">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="322">
@@ -580,13 +542,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/vuex/modules/auth.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-91">
-          <caret line="11" column="4" lean-forward="false" selection-start-line="11" selection-start-column="4" selection-end-line="11" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/services/resources.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="69">
@@ -623,21 +578,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/modules/Clients/List.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="23">
-          <caret line="83" column="20" lean-forward="false" selection-start-line="83" selection-start-column="20" selection-end-line="83" selection-end-column="20" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/modules/Clients/View.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="23">
-          <caret line="240" column="47" lean-forward="false" selection-start-line="240" selection-start-column="47" selection-end-line="240" selection-end-column="47" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/App.vue">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="345">
@@ -667,25 +607,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/common/Drawer.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="552">
-          <caret line="55" column="8" lean-forward="false" selection-start-line="55" selection-start-column="8" selection-end-line="55" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/mixins/dataTableEmployee.mixin.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="897">
           <caret line="39" column="24" lean-forward="false" selection-start-line="39" selection-start-column="24" selection-end-line="39" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/modules/Auth/Login.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="103">
-          <caret line="57" column="34" lean-forward="false" selection-start-line="57" selection-start-column="34" selection-end-line="57" selection-end-column="34" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -703,76 +628,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/mixins/validationEmployee.mixin.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="230">
-          <caret line="10" column="52" lean-forward="false" selection-start-line="10" selection-start-column="52" selection-end-line="10" selection-end-column="52" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/vuex/store.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="46">
-          <caret line="2" column="42" lean-forward="false" selection-start-line="2" selection-start-column="42" selection-end-line="2" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/modules/Employees/View.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1980">
-          <caret line="252" column="35" lean-forward="false" selection-start-line="252" selection-start-column="26" selection-end-line="252" selection-end-column="35" />
-          <folding>
-            <element signature="e#4859#4886#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/modules/Clients/Edit.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-3402">
-          <caret line="45" column="28" lean-forward="false" selection-start-line="45" selection-start-column="28" selection-end-line="45" selection-end-column="28" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/mixins/employeeFormat.mixin.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="437">
-          <caret line="23" column="96" lean-forward="false" selection-start-line="23" selection-start-column="96" selection-end-line="23" selection-end-column="96" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/modules/Employees/Create.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="161">
-          <caret line="8" column="0" lean-forward="false" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="54" />
-          <folding>
-            <element signature="e#7442#7472#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/mixins/format.mixin.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="487">
-          <caret line="30" column="0" lean-forward="false" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/mixins/format.bkp.js" />
     <entry file="file://$PROJECT_DIR$/.eslintignore">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="46">
           <caret line="2" column="9" lean-forward="true" selection-start-line="2" selection-start-column="9" selection-end-line="2" selection-end-column="9" />
-          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/vuex/modules/clients.js">
+    <entry file="file://$PROJECT_DIR$/src/mixins/format.mixin.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="23">
-          <caret line="26" column="32" lean-forward="false" selection-start-line="26" selection-start-column="32" selection-end-line="26" selection-end-column="32" />
-          <folding />
+        <state relative-caret-position="69">
+          <caret line="4" column="13" lean-forward="false" selection-start-line="4" selection-start-column="4" selection-end-line="4" selection-end-column="13" />
         </state>
       </provider>
     </entry>
@@ -781,57 +648,209 @@
         <state relative-caret-position="23">
           <caret line="64" column="14" lean-forward="false" selection-start-line="64" selection-start-column="14" selection-end-line="64" selection-end-column="14" />
           <folding>
-            <element signature="e#794#870#0" expanded="true" />
+            <element signature="e#794#870#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/Index.vue">
+    <entry file="file://$PROJECT_DIR$/src/components/modules/Auth/Login.vue">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="23">
-          <caret line="14" column="99" lean-forward="false" selection-start-line="14" selection-start-column="99" selection-end-line="14" selection-end-column="99" />
-          <folding>
-            <element signature="e#1055#1097#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/router.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="188">
-          <caret line="44" column="27" lean-forward="false" selection-start-line="44" selection-start-column="27" selection-end-line="44" selection-end-column="27" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/modules/Employees/Edit.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="462">
-          <caret line="159" column="0" lean-forward="false" selection-start-line="159" selection-start-column="0" selection-end-line="159" selection-end-column="54" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/vuex/modules/employees.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="487">
-          <caret line="35" column="4" lean-forward="false" selection-start-line="35" selection-start-column="4" selection-end-line="35" selection-end-column="4" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/modules/Clients/Create.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-5819">
-          <caret line="8" column="52" lean-forward="true" selection-start-line="8" selection-start-column="52" selection-end-line="8" selection-end-column="52" />
+          <caret line="49" column="0" lean-forward="false" selection-start-line="49" selection-start-column="0" selection-end-line="51" selection-end-column="6" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/mixins/validationClient.mixin.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="234">
-          <caret line="65" column="10" lean-forward="false" selection-start-line="65" selection-start-column="10" selection-end-line="65" selection-end-column="10" />
+        <state relative-caret-position="283">
+          <caret line="20" column="45" lean-forward="true" selection-start-line="20" selection-start-column="45" selection-end-line="20" selection-end-column="45" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/modules/Users/Edit.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/modules/Employees/Create.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="396">
+          <caret line="197" column="57" lean-forward="false" selection-start-line="197" selection-start-column="43" selection-end-line="197" selection-end-column="57" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/mixins/employeeFormat.mixin.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-65">
+          <caret line="4" column="13" lean-forward="false" selection-start-line="4" selection-start-column="4" selection-end-line="4" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/mixins/validationEmployee.mixin.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="713">
+          <caret line="31" column="20" lean-forward="false" selection-start-line="31" selection-start-column="20" selection-end-line="31" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/vuex/modules/clients.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="713">
+          <caret line="35" column="0" lean-forward="false" selection-start-line="35" selection-start-column="0" selection-end-line="37" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/vuex/modules/employees.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="177">
+          <caret line="23" column="4" lean-forward="false" selection-start-line="23" selection-start-column="4" selection-end-line="23" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/modules/Employees/Edit.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="851">
+          <caret line="235" column="60" lean-forward="true" selection-start-line="235" selection-start-column="60" selection-end-line="235" selection-end-column="60" />
+          <folding>
+            <element signature="e#7461#7491#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/modules/Clients/View.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="169">
+          <caret line="250" column="26" lean-forward="true" selection-start-line="250" selection-start-column="26" selection-end-line="250" selection-end-column="26" />
+          <folding>
+            <element signature="e#5404#5973#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/modules/Employees/View.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1382">
+          <caret line="138" column="8" lean-forward="true" selection-start-line="138" selection-start-column="8" selection-end-line="138" selection-end-column="8" />
+          <folding>
+            <element signature="e#5446#6015#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/vuex/store.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="161">
+          <caret line="7" column="21" lean-forward="true" selection-start-line="7" selection-start-column="21" selection-end-line="7" selection-end-column="21" />
+          <folding>
+            <element signature="e#0#39#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/vuex/modules/users.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="39" column="61" lean-forward="false" selection-start-line="39" selection-start-column="61" selection-end-line="39" selection-end-column="61" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/modules/Clients/Edit.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="573">
+          <caret line="268" column="14" lean-forward="true" selection-start-line="268" selection-start-column="14" selection-end-line="268" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/vuex/modules/auth.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="253">
+          <caret line="11" column="21" lean-forward="true" selection-start-line="11" selection-start-column="21" selection-end-line="11" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/modules/Users/Create.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/Index.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="161">
+          <caret line="16" column="79" lean-forward="false" selection-start-line="16" selection-start-column="79" selection-end-line="16" selection-end-column="79" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/common/Drawer.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="211">
+          <caret line="13" column="40" lean-forward="false" selection-start-line="13" selection-start-column="35" selection-end-line="13" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/modules/Users/DataUsers.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="23">
+          <caret line="1" column="4" lean-forward="false" selection-start-line="1" selection-start-column="4" selection-end-line="1" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/mixins/dataTableUser.mixin.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-226">
+          <caret line="55" column="34" lean-forward="false" selection-start-line="55" selection-start-column="34" selection-end-line="55" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/modules/Clients/List.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="230">
+          <caret line="28" column="0" lean-forward="false" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/modules/Users/List.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="161">
+          <caret line="43" column="21" lean-forward="false" selection-start-line="43" selection-start-column="21" selection-end-line="43" selection-end-column="21" />
+          <folding>
+            <element signature="e#791#818#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/modules/Clients/Create.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="46">
+          <caret line="2" column="19" lean-forward="false" selection-start-line="2" selection-start-column="19" selection-end-line="2" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/router.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="349">
+          <caret line="45" column="67" lean-forward="false" selection-start-line="45" selection-start-column="63" selection-end-line="45" selection-end-column="67" />
           <folding />
         </state>
       </provider>

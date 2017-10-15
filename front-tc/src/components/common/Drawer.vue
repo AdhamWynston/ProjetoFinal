@@ -11,7 +11,7 @@
                 <q-item-side icon="ion-ios-people" />
                 <q-item-main label="Clientes" sublabel="Modúlo Clientes" />
             </q-side-link>
-            <q-side-link item to="/users">
+            <q-side-link item to="/admin/users">
                 <q-item-side icon="supervisor_account" />
                 <q-item-main label="Usuários" sublabel="Modúlo Usuários" />
             </q-side-link>

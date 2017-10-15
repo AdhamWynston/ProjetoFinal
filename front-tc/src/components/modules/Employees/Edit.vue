@@ -1,14 +1,16 @@
 <template>
-  <div class="layout-padding">
+  <div class="layout-padding layout-view">
     <q-stepper v-model="currentStep">
-      <q-step name="first" title="Dados Pessoais" color="light">
-        <div class="row-inline">
-          <div class="row sm-gutter self-center">
-            <div class="col-xs-12 col-sm-8">
+      <div class="row-inline">
+        <q-step name="first" title="Dados Pessoais" color="light">
+          <div class="row sm-gutter">
+            <div class="col-xs-12 col-sm-6">
               <q-field
                       :error="$v.employee.name.$error"
-                      error-label="Por favor, preencha com nome válido">
+                      :error-label="nameError"
+              >
                 <q-input
+                        :error="$v.employee.name.$error"
                         max-length="100"
                         v-model="employee.name"
                         float-label="Nome Completo"
@@ -19,22 +21,20 @@
             </div>
           </div>
           <div class="row xs-gutter">
-            <div class="col-xs-12 col-sm-4">
+            <div class="col-xs-12 col-sm-3">
               <q-field
-                      :error="$v.employee.document.$error"
-                      error-label="Por favor, preencha com CPF válido">
-                  <q-input
-                          v-model="documentComputed"
-                          max-length="11"
-                          float-label="Nº Documento(CPF)"
-                          @blur="$v.employee.document.$touch"
-                  />
+              >
+                <q-input
+                        :error="$v.employee.document.$error"
+                        v-model="documentComputed"
+                        max-length="11"
+                        float-label="Nº Documento(CPF)"
+                        @blur="$v.employee.document.$touch"
+                />
               </q-field>
             </div>
-          </div>
-          <div class="row sm-gutter">
-            <div class="col-xs-12 col-sm-6">
-              <q-field :error="error" error-label="Por favor, preencha com E-mail válido">
+            <div class="col-xs-12 col-sm-3">
+              <q-field :error="$v.employee.email.$error" :error-label="emailError">
                 <q-input
                         v-model="employee.email"
                         type="email"
@@ -45,9 +45,10 @@
                         required
                 />
               </q-field>
+              <!--<span v-if="$v.employee.email.$error">{{emailError}}</span>-->
             </div>
           </div>
-          <div class="row sm-gutter">
+          <div class="row xs-gutter">
             <div class="col-xs-12 col-sm-3">
               <q-field :error="error" error-label="Por favor, preencha com telefone válido">
                 <q-input
@@ -63,25 +64,24 @@
             </div>
             <div class="col-xs-12 col-sm-3">
               <q-field
-                      :error="$v.employee.phoneAlternative.$error"
                       error-label="Por favor, preencha com telefone válido">
                 <q-input
-                        type="text"
                         max-length="15"
                         class="no-margin"
                         v-on:keyup="phoneFormat(2)"
                         v-model="employee.phoneAlternative"
                         @blur="$v.employee.phoneAlternative.$touch"
                         float-label="Telefone Alernativo"
+                        :error="$v.employee.phoneAlternative.$error"
                 />
               </q-field>
             </div>
           </div>
           <q-stepper-navigation>
-            <q-btn :disabled="$v.employee.$invalid"  color="primary" @click="currentStep = 'second'">Avançar</q-btn>
+            <q-btn  color="primary" @click="currentStep = 'second'">Avançar</q-btn>
           </q-stepper-navigation>
-        </div>
-      </q-step>
+        </q-step>
+      </div>
       <q-step name="second" title="Endereço">
         <div class="row xs-gutter">
           <div class="col-xs-12 col-sm-3">
@@ -186,17 +186,21 @@
           <q-btn color="primary" @click="currentStep = 'first'">Voltar</q-btn>
           <q-btn color="green" :disabled="$v.employee.$invalid" @click="save()">Salvar</q-btn>
         </q-stepper-navigation>
+        <pre>
+          {{$v.employee}}
+        </pre>
       </q-step>
     </q-stepper>
   </div>
 </template>
 
 <script>
-  import { CNPJ, CPF } from 'cpf_cnpj'
-  import validationFormat from '../../../mixins/validationClient.mixin'
+  import { CPF } from 'cpf_cnpj'
+  import validation from '../../../mixins/validationemployee.mixin'
   import statesMixin from '../../../mixins/states.mixin'
   import formatMixin from '../../../mixins/employeeFormat.mixin'
   import {
+    Loading,
     QInput,
     QSelect,
     QBtn,
@@ -208,8 +212,11 @@
     QStepperNavigation
   } from 'quasar'
   export default {
-    mixins: [statesMixin, formatMixin, validationFormat],
+    mixins: [statesMixin, formatMixin, validation],
     methods: {
+      closeLoading () {
+        setTimeout(Loading.hide, 600)
+      },
       save () {
         if (this.$v.employee.$invalid === false) {
           let data = {
@@ -219,7 +226,6 @@
             city: this.employee.city,
             zip_code: this.employee.zip_code,
             street: this.employee.street,
-            type: this.employee.type,
             neighborhood: this.employee.neighborhood,
             number: this.employee.number,
             complement: this.employee.complement,
@@ -264,21 +270,13 @@
                 return Toast.create.negative('Informe um CPF válido')
               }
             }
-            else {
-              return CPF.format(this.employee.document)
-            }
           }
           else {
             return ''
           }
         },
         set: function (newValue) {
-          if (this.employee.type === 1) {
-            this.employee.document = CPF.strip(newValue)
-          }
-          else {
-            this.employee.document = CNPJ.strip(newValue)
-          }
+          this.employee.document = CPF.strip(newValue)
         }
       }
     },
@@ -295,6 +293,7 @@
       Toast,
       QBtn,
       QAlert,
+      Loading,
       QStepper,
       QStep,
       QStepperNavigation

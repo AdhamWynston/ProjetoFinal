@@ -1,14 +1,16 @@
 <template>
-  <div class="layout-padding">
+  <div class="layout-padding layout-view">
     <q-stepper v-model="currentStep">
-      <q-step name="first" title="Dados Pessoais" color="light">
         <div class="row-inline">
-          <div class="row sm-gutter self-center">
-            <div class="col-xs-12 col-sm-8">
+      <q-step name="first" title="Dados Pessoais" color="light">
+          <div class="row sm-gutter">
+            <div class="col-xs-12 col-sm-6">
               <q-field
                       :error="$v.employee.name.$error"
-                      error-label="Por favor, preencha com nome válido">
+                      :error-label="nameError"
+              >
                 <q-input
+                        :error="$v.employee.name.$error"
                         max-length="100"
                         v-model="employee.name"
                         float-label="Nome Completo"
@@ -19,11 +21,11 @@
             </div>
           </div>
           <div class="row xs-gutter">
-            <div class="col-xs-12 col-sm-4">
+            <div class="col-xs-12 col-sm-3">
               <q-field
-                      :error="$v.employee.document.$error"
-                      error-label="Por favor, preencha com CPF válido">
+                    >
                   <q-input
+                          :error="$v.employee.document.$error"
                           v-model="documentComputed"
                           max-length="11"
                           float-label="Nº Documento(CPF)"
@@ -31,10 +33,8 @@
                   />
               </q-field>
             </div>
-          </div>
-          <div class="row sm-gutter">
-            <div class="col-xs-12 col-sm-6">
-              <q-field :error="error" error-label="Por favor, preencha com E-mail válido">
+            <div class="col-xs-12 col-sm-3">
+              <q-field :error="$v.employee.email.$error" :error-label="emailError">
                 <q-input
                         v-model="employee.email"
                         type="email"
@@ -45,9 +45,10 @@
                         required
                 />
               </q-field>
+                <!--<span v-if="$v.employee.email.$error">{{emailError}}</span>-->
             </div>
           </div>
-          <div class="row sm-gutter">
+          <div class="row lg-gutter">
             <div class="col-xs-12 col-sm-3">
               <q-field :error="error" error-label="Por favor, preencha com telefone válido">
                 <q-input
@@ -63,16 +64,15 @@
             </div>
             <div class="col-xs-12 col-sm-3">
               <q-field
-                      :error="$v.employee.phoneAlternative.$error"
                       error-label="Por favor, preencha com telefone válido">
                 <q-input
-                        type="text"
                         max-length="15"
                         class="no-margin"
                         v-on:keyup="phoneFormat(2)"
                         v-model="employee.phoneAlternative"
                         @blur="$v.employee.phoneAlternative.$touch"
                         float-label="Telefone Alernativo"
+                        :error="$v.employee.phoneAlternative.$error"
                 />
               </q-field>
             </div>
@@ -80,8 +80,8 @@
           <q-stepper-navigation>
             <q-btn  color="primary" @click="currentStep = 'second'">Avançar</q-btn>
           </q-stepper-navigation>
-        </div>
       </q-step>
+  </div>
       <q-step name="second" title="Endereço">
         <div class="row xs-gutter">
           <div class="col-xs-12 col-sm-3">
@@ -193,10 +193,11 @@
 
 <script>
   import { CPF } from 'cpf_cnpj'
-  import validation from '../../../mixins/validationClient.mixin'
+  import validation from '../../../mixins/validationemployee.mixin'
   import statesMixin from '../../../mixins/states.mixin'
   import formatMixin from '../../../mixins/employeeFormat.mixin'
   import {
+    Loading,
     QInput,
     QSelect,
     QBtn,
@@ -210,11 +211,16 @@
   export default {
     mixins: [statesMixin, formatMixin, validation],
     methods: {
+      closeLoading () {
+        setTimeout(Loading.hide, 600)
+      },
       submit () {
         if (this.$v.employee.$invalid === false) {
           this.$store.dispatch('employeeInsert', this.employee)
             .then(() => {
+              Loading.show()
               this.$router.push('/employees')
+              this.closeLoading()
               Toast.create.positive({
                 html: 'Cadastrado com sucesso',
                 icon: 'done'
@@ -283,6 +289,7 @@
       Toast,
       QBtn,
       QAlert,
+      Loading,
       QStepper,
       QStep,
       QStepperNavigation

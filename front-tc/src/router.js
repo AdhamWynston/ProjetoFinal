@@ -34,7 +34,7 @@ export default new VueRouter({
           component: load('modules/Clients/View'),
           name: 'clients.view'
         },
-        { path: '/client/:id/edit', component: load('modules/Client/Edit'), name: 'clients.edit', meta: { auth: true } },
+        { path: '/clients/:id/edit', component: load('modules/Clients/Edit'), name: 'clients.edit', meta: { auth: true } },
         { path: '/employees', component: load('modules/Employees/List'), name: 'employees.list', meta: { auth: true } },
         { path: '/employees/create', component: load('modules/Employees/Create'), name: 'employees.create', meta: { auth: true } },
         {

@@ -114,14 +114,14 @@
               <q-item-tile sublabel>Selecione se sim</q-item-tile>
             </q-item-main>
             <q-item-side right>
-              <q-toggle color="secondary" v-model="employee.status" />
+              <q-toggle @input="alterChecked" color="secondary" v-model="checked" />
             </q-item-side>
           </q-item>
           <q-item-separator />
           <q-item tag="label">
             <q-item-main>
               <q-item-tile label>Notificações</q-item-tile>
-              <q-item-tile sublabel>Notificar o employeee quando estiver eventos próximos?</q-item-tile>
+              <q-item-tile sublabel>Notificar o Funcionário quando estiver eventos próximos?</q-item-tile>
             </q-item-main>
             <q-item-side>
               <q-checkbox v-model="checked_two" />
@@ -145,6 +145,7 @@ import moment from 'moment'
 import {
   QFixedPosition,
   QFab,
+  Toast,
   QFabAction,
   QModal,
   QStepper,
@@ -214,6 +215,7 @@ export default {
     QRouteTab,
     QBtn,
     QIcon,
+    Toast,
     QItemSide,
     QItemMain,
     QSideLink,
@@ -229,6 +231,9 @@ export default {
     }
   },
   computed: {
+    checked () {
+      return this.employee.status === 1
+    },
     employee () {
       return this.$store.state.employees.one || {}
     }
@@ -242,6 +247,32 @@ export default {
     }
   },
   methods: {
+    alterChecked () {
+      let check
+      if (this.employee.status === 1) {
+        check = 0
+      }
+      else {
+        check = 1
+      }
+      let data = {
+        status: check
+      }
+      this.$store.dispatch('employeeUpdate', {id: this.employee.id, data: data})
+        .then(() => {
+          this.$store.dispatch('employeesGet', this.employee.id)
+          Toast.create.positive({
+            html: 'Status alterado com sucesso!',
+            icon: 'done'
+          })
+        })
+        .catch(() => {
+          Toast.create.negative({
+            html: 'Não foi possível alterar o status',
+            icon: 'cancel'
+          })
+        })
+    },
     back () {
       window.history.go(-1)
     },

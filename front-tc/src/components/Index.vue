@@ -14,7 +14,7 @@
             <q-route-tab slot="title" icon="ion-ios-people" to="/clients" label="Clientes" />
             <q-route-tab slot="title" icon="ion-ios-people" to="/employees" label="Funcionários" />
             <template v-if="isAdministrator">
-                <q-route-tab slot="title" icon="supervisor_account" to="/users" label="Usuários" />
+                <q-route-tab slot="title" icon="supervisor_account" to="/admin/users" label="Usuários" />
             </template>
         </q-tabs>
         <Drawer slot="left"></Drawer>
