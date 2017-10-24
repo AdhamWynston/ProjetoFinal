@@ -1,6 +1,217 @@
 <template>
-  <div class="layout-padding">
-    <h4>CREATE USER</h4>
+  <div class="layout-padding row justify-center">
+    <div style="width: 700px; max-width: 90vw;">
+      <q-stepper v-model="currentStep" vertical>
+        <q-step name="first" title="Dados Pessoais" color="light">
+          <div class="row xs-gutter">
+            <div class="col-xs-12 col-sm-12">
+              <q-field
+                      :error="$v.client.name.$error"
+                      error-label="Por favor, preencha este campo">
+                <q-input
+                        max-length="100"
+                        v-model="client.name"
+                        float-label="Nome Completo"
+                        class="no-margin"
+                        @blur="$v.client.name.$touch"
+                />
+              </q-field>
+            </div>
+          </div>
+          <div class="row xs-gutter">
+            <div class="col-xs-12 col-sm-4">
+              <q-field
+                      :error="$v.client.type.$error"
+                      error-label="Por favor, preencha este campo">
+                <q-select
+                        v-model="client.type"
+                        float-label="Tipo de pessoa?"
+                        @blur="$v.client.type.$touch"
+                        :options="options"
+                />
+              </q-field>
+            </div>
+            <div class="col-xs-12 col-sm-8">
+              <q-field
+                      :error="$v.client.document.$error"
+                      error-label="Este CPF já está cadastrado ou é inválido!">
+                <template v-if="this.client.type === 1">
+                  <q-input
+                          v-model="documentComputed"
+                          max-length="11"
+                          float-label="Nº Documento(CPF)"
+                          @blur="$v.client.document.$touch"
+                  />
+                </template>
+                <template v-if="this.client.type === 2">
+                  <q-input
+                          v-model="documentComputed"
+                          max-length="14"
+                          float-label="Nº Documento(CNPJ)"
+                          @blur="$v.client.document.$touch"
+                          :error="$v.client.document.$error"
+                  />
+                </template>
+              </q-field>
+            </div>
+          </div>
+          <div class="row sm-gutter">
+            <div class="col-xs-12 col-sm-12">
+              <q-field :error="error" error-label="Este E-mail já existe ou está inválido">
+                <q-input
+                        v-model="client.email"
+                        type="email"
+                        class="no-margin"
+                        float-label="E-mail"
+                        @blur="$v.client.email.$touch"
+                        :error="$v.client.email.$error"
+                        required
+                />
+              </q-field>
+            </div>
+          </div>
+          <div class="row sm-gutter">
+            <div class="col-xs-12 col-sm-6">
+              <q-field :error="error" error-label="Por favor, preencha com telefone válido">
+                <q-input
+                        type="text"
+                        v-model="client.phone"
+                        v-on:keyup="phoneFormat(1)"
+                        class="no-margin"
+                        @blur="$v.client.phone.$touch"
+                        :error="$v.client.phone.$error"
+                        max-length="15"
+                        float-label="Telefone" />
+              </q-field>
+            </div>
+            <div class="col-xs-12 col-sm-6">
+              <q-field
+                      :error="$v.client.phoneAlternative.$error"
+                      error-label="Por favor, preencha com telefone válido">
+                <q-input
+                        type="text"
+                        max-length="15"
+                        class="no-margin"
+                        v-on:keyup="phoneFormat(2)"
+                        v-model="client.phoneAlternative"
+                        @blur="$v.client.phoneAlternative.$touch"
+                        float-label="Telefone Alernativo"
+                />
+              </q-field>
+            </div>
+          </div>
+
+          <q-stepper-navigation>
+            <q-btn  color="primary" @click="currentStep = 'second'">Avançar</q-btn>
+          </q-stepper-navigation>
+        </q-step>
+        <q-step name="second" title="Endereço">
+          <div class="row xs-gutter">
+            <div class="col-xs-12 col-sm-4">
+              <q-field
+                      :error="$v.client.zip_code.$error"
+                      error-label="Por favor, preencha este campo">
+                <q-input
+                        v-on:keyup="cepFormat"
+                        max-length="9"
+                        v-model="client.zip_code"
+                        float-label="CEP"
+                        class="no-margin"
+                        @blur="$v.client.zip_code.$touch"
+                />
+              </q-field>
+            </div>
+          </div>
+          <div class="row sm-gutter">
+            <div class="col-xs-12 col-sm-8">
+              <q-field
+                      :error="$v.client.city.$error"
+                      error-label="Por favor, preencha este campo">
+                <q-input
+                        max-length="100"
+                        v-model="client.city"
+                        float-label="Cidade"
+                        class="no-margin"
+                        @blur="$v.client.name.$touch"
+                />
+              </q-field>
+            </div>
+            <div class="col-xs-12 col-sm-4">
+              <q-field
+                      :error="$v.client.state.$error"
+                      error-label="Por favor, preencha este campo">
+                <q-select
+                        v-model="client.state"
+                        float-label="Estado"
+                        @blur="$v.client.state.$touch"
+                        :options="states"
+                />
+              </q-field>
+            </div>
+          </div>
+          <div class="row sm-gutter">
+            <div class="col-xs-12 col-sm-7">
+              <q-field
+                      :error="$v.client.street.$error"
+                      error-label="Por favor, preencha este campo">
+                <q-input
+                        max-length="100"
+                        v-model="client.street"
+                        float-label="Logradouro"
+                        class="no-margin"
+                        @blur="$v.client.street.$touch"
+                />
+              </q-field>
+            </div>
+            <div class="col-xs-12 col-sm-5">
+              <q-field
+                      :error="$v.client.neighborhood.$error"
+                      error-label="Por favor, preencha este campo">
+                <q-input
+                        max-length="100"
+                        v-model="client.neighborhood"
+                        float-label="Bairro"
+                        class="no-margin"
+                        @blur="$v.client.neighborhood.$touch"
+                />
+              </q-field>
+            </div>
+          </div>
+          <div class="row sm-gutter">
+            <div class="col-xs-12 col-sm-4">
+              <q-field
+                      :error="$v.client.number.$error"
+                      error-label="Por favor, preencha este campo">
+                <q-input
+                        max-length="100"
+                        v-model="client.number"
+                        float-label="Número"
+                        class="no-margin"
+                        @blur="$v.client.number.$touch"
+                />
+              </q-field>
+            </div>
+            <div class="col-xs-12 col-sm-8">
+              <q-field
+                      :error="$v.client.complement.$error"
+                      error-label="Por favor, preencha este campo">
+                <q-input
+                        max-length="60"
+                        v-model="client.complement"
+                        float-label="Complemento"
+                        class="no-margin"
+                        @blur="$v.client.complement.$touch"
+                />
+              </q-field>
+            </div>
+          </div>
+          <q-stepper-navigation>
+            <q-btn color="primary" @click="currentStep = 'first'">Voltar</q-btn>
+            <q-btn color="green" :disabled="$v.client.$invalid" @click="submit()">Salvar</q-btn>
+          </q-stepper-navigation>
+        </q-step>
+      </q-stepper>
+    </div>
   </div>
 </template>
 

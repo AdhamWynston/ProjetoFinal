@@ -25,25 +25,24 @@ export default new VueRouter({
       path: '/',
       component: load('Index'),
       children: [
+        // HOME
         { path: '', component: load('Home') },
         { path: '/home', component: load('Home'), name: 'home', meta: { auth: true } },
+        // CLIENTE
         { path: '/clients', component: load('modules/Clients/List'), name: 'clients.list', meta: { auth: true } },
         { path: '/clients/create', component: load('modules/Clients/Create'), name: 'clients.create', meta: { auth: true } },
-        {
-          path: '/clients/:id',
-          component: load('modules/Clients/View'),
-          name: 'clients.view'
-        },
+        { path: '/clients/:id', component: load('modules/Clients/View'), name: 'clients.view' },
         { path: '/clients/:id/edit', component: load('modules/Clients/Edit'), name: 'clients.edit', meta: { auth: true } },
+        // FUNCIONARIO
         { path: '/employees', component: load('modules/Employees/List'), name: 'employees.list', meta: { auth: true } },
         { path: '/employees/create', component: load('modules/Employees/Create'), name: 'employees.create', meta: { auth: true } },
-        {
-          path: '/employees/:id',
-          component: load('modules/Employees/View'),
-          name: 'employees.view'
-        },
+        { path: '/employees/:id', component: load('modules/Employees/View'), name: 'employees.view' },
         { path: '/employees/:id/edit', component: load('modules/Employees/Edit'), name: 'employees.edit', meta: { auth: true } },
-        { path: '/admin/users', component: load('modules/Users/List'), name: 'admin.users.list', meta: { auth: true } }
+        // USERS
+        { path: '/admin/users', component: load('modules/Users/List'), name: 'admin.users.list', meta: { auth: true } },
+        { path: '/admin/users/create', component: load('modules/Users/Create'), name: 'admin.users.create', meta: { auth: true } },
+        { path: '/admin/users/:id', component: load('modules/Users/View'), name: 'admin.users.view', meta: { auth: true } },
+        { path: 'admin/users/:id/edit', component: load('modules/Users/Edit'), name: 'admin.users.edit', meta: { auth: true } }
       ]
     },
     { path: '/login', component: load('modules/Auth/Login'), name: 'login' },

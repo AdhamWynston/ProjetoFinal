@@ -10,7 +10,7 @@
     <div class="row">
       <div class="col-xs-12 col-sm-8 col-md-8">
     <q-list link>
-      <q-collapsible icon="perm_identity" label="Dados Pessoais">
+      <q-collapsible opened icon="perm_identity" label="Dados Pessoais">
         <div>
       <q-item>
         <q-item-main>
@@ -58,7 +58,7 @@
           </q-item>
         </div>
       </q-collapsible>
-      <q-collapsible icon="ion-ios-location" label="Endereço">
+      <q-collapsible opened icon="ion-ios-location" label="Endereço">
         <div>
           <q-item>
             <q-item-main>
@@ -106,7 +106,7 @@
           </template>
         </div>
       </q-collapsible>
-      <q-collapsible icon="ion-levels" label="Extras">
+      <q-collapsible opened icon="ion-levels" label="Extras">
         <div>
           <q-item tag="label">
             <q-item-main>

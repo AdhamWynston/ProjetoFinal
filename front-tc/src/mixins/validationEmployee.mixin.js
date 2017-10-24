@@ -19,9 +19,6 @@ export default {
       else if (!this.$v.employee.email.email) {
         return 'Preencha com E-mail válido!'
       }
-      else if (!this.$v.employee.email.isUnique) {
-        return 'Este E-mail já está cadastrado!'
-      }
       else {
         return null
       }
@@ -29,27 +26,12 @@ export default {
   },
   validations: {
     employee: {
-      email: { required,
-        email,
-        async isUnique (value) {
-          if (value === '') {
-            return true
-          }
-          const response = await fetch(`http://127.0.0.1:8000/api/unique/employees?where[email]=${value}`)
-          return Boolean(await response.json())
-        }
-      },
+      email: { required, email },
       name: { required, minLength: minLength(3) },
       document: { required,
         numeric,
-        minLength: minLength(11),
-        async isUnique (value) {
-          if (value === '') {
-            return true
-          }
-          const response = await fetch(`http://127.0.0.1:8000/api/unique/clients?where[document]=${value}`)
-          return Boolean(await response.json())
-        }},
+        minLength: minLength(11)
+      },
       phone: { required, minLength: minLength(11) },
       phoneAlternative: { minLength: minLength(11) },
       state: { required },

@@ -79,11 +79,16 @@ export default {
         {
           label: 'Cadastrado em',
           field: 'created_at',
-          width: '50px',
+          classes: 'bg-orange-2',
+          width: '40px',
           sort: true,
           filter: true
         }
-      ]
+      ],
+      pagination: true,
+      rowHeight: 50,
+      bodyHeightProp: 'maxHeight',
+      bodyHeight: 500
     }
   }
 }

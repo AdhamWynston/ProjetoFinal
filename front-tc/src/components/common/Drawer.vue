@@ -1,7 +1,7 @@
 <template>
     <div>
         <q-list no-border link inset-delimiter>
-            <div class="row flex-center bg-white" style="width: 100%; height: 110px;"><img src="~assets/L.png" style="height: 75px;"> <div style="margin-left: 15px;">Lean Tools</div></div>
+            <div class="row flex-center bg-white" style="width: 100%; height: 110px;"><img src="~assets/L.png" style="height: 75px;"> <div style="margin-left: 15px;">{{ this.username }}</div></div>
             <q-list-header>Ações no sistema</q-list-header>
             <q-side-link item to="/home">
                 <q-item-side icon="home" />
@@ -38,6 +38,7 @@
     QItemMain,
     QSideLink
   } from 'quasar'
+  import authMixin from '../../mixins/auth.mixin'
   export default {
     name: 'drawer',
     components: {
@@ -50,6 +51,7 @@
       QItemMain,
       QSideLink
     },
+    mixins: [authMixin],
     methods: {
       closeLoading () {
         setTimeout(Loading.hide, 600)

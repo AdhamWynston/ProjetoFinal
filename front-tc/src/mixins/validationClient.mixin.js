@@ -46,26 +46,11 @@ export default {
   validations: {
     client: {
       email: { required,
-        email,
-        async isUnique (value) {
-          if (value === '') {
-            return true
-          }
-          const response = await fetch(`http://127.0.0.1:8000/api/unique/clients?where[email]=${value}`)
-          return Boolean(await response.json())
-        }
-      },
+        email },
       name: { required, minLength: minLength(3) },
       document: { required,
         numeric,
-        minLength: minLength(11),
-        async isUnique (value) {
-          if (value === '') {
-            return true
-          }
-          const response = await fetch(`http://127.0.0.1:8000/api/unique/clients?where[document]=${value}`)
-          return Boolean(await response.json())
-        }
+        minLength: minLength(11)
       },
       phone: { required, minLength: minLength(11) },
       type: { required },

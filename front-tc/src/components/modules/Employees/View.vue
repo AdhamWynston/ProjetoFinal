@@ -1,16 +1,16 @@
 <template>
-  <div class="layout-padding justify-center">
-    <div class="row">
+  <div class="layout-padding">
+    <div class="row justify-center">
       <div class="col-auto">
       <h5>
        Informações do Funcionário
       </h5>
       </div>
     </div>
-    <div class="row">
-      <div class="col-xs-12 col-sm-8 col-md-8">
+    <div class="row justify-center">
+      <div class="col-xs-12 col-sm-6 col-md-6">
     <q-list link>
-      <q-collapsible icon="perm_identity" label="Dados Pessoais">
+      <q-collapsible opened  icon="perm_identity" label="Dados Pessoais">
         <div>
       <q-item>
         <q-item-main>
@@ -58,7 +58,7 @@
           </q-item>
         </div>
       </q-collapsible>
-      <q-collapsible icon="ion-ios-location" label="Endereço">
+      <q-collapsible opened icon="ion-ios-location" label="Endereço">
         <div>
           <q-item>
             <q-item-main>
@@ -106,7 +106,7 @@
           </template>
         </div>
       </q-collapsible>
-      <q-collapsible icon="ion-levels" label="Extras">
+      <q-collapsible opened icon="ion-levels" label="Extras">
         <div>
           <q-item tag="label">
             <q-item-main>
@@ -132,7 +132,7 @@
     </q-list>
       </div>
     </div>
-    <q-fixed-position corner="bottom-left" :offset="[16, 16]">
+    <q-fixed-position corner="bottom-right" :offset="[10, 10]">
       <q-btn  @click="goEdit()" round icon="ion-edit" color="orange">
       </q-btn>
     </q-fixed-position>

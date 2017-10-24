@@ -30,13 +30,13 @@ export default {
           })
         })
     },
-    clientInsert (context, data) {
+    userInsert (context, data) {
       return Vue.http.post('http://127.0.0.1:8000/api/users', data)
     },
-    clientUpdate (context, config) {
+    userUpdate (context, config) {
       return Vue.http.put('http://127.0.0.1:8000/api/users/' + config.id, config.data)
     },
-    clientDesactive (context, id) {
+    userDesactive (context, id) {
       return Vue.http.delete('http://127.0.0.1:8000/api/users/' + id)
     }
   }

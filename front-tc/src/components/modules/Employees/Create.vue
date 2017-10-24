@@ -1,10 +1,10 @@
 <template>
-  <div class="layout-padding layout-view">
-    <q-stepper v-model="currentStep">
-        <div class="row-inline">
+  <div class="layout-padding row justify-center">
+    <div style="width: 700px; max-width: 90vw;">
+    <q-stepper v-model="currentStep" vertical>
       <q-step name="first" title="Dados Pessoais" color="light">
           <div class="row sm-gutter">
-            <div class="col-xs-12 col-sm-6">
+            <div class="col-xs-12 col-sm-12">
               <q-field
                       :error="$v.employee.name.$error"
                       :error-label="nameError"
@@ -20,8 +20,8 @@
               </q-field>
             </div>
           </div>
-          <div class="row xs-gutter">
-            <div class="col-xs-12 col-sm-3">
+          <div class="row sm-gutter">
+            <div class="col-xs-12 col-sm-5">
               <q-field
                     >
                   <q-input
@@ -33,7 +33,7 @@
                   />
               </q-field>
             </div>
-            <div class="col-xs-12 col-sm-3">
+            <div class="col-xs-12 col-sm-7">
               <q-field :error="$v.employee.email.$error" :error-label="emailError">
                 <q-input
                         v-model="employee.email"
@@ -48,8 +48,8 @@
                 <!--<span v-if="$v.employee.email.$error">{{emailError}}</span>-->
             </div>
           </div>
-          <div class="row lg-gutter">
-            <div class="col-xs-12 col-sm-3">
+          <div class="row sm-gutter">
+            <div class="col-xs-12 col-sm-6">
               <q-field :error="error" error-label="Por favor, preencha com telefone válido">
                 <q-input
                         type="text"
@@ -62,7 +62,7 @@
                         float-label="Telefone" />
               </q-field>
             </div>
-            <div class="col-xs-12 col-sm-3">
+            <div class="col-xs-12 col-sm-6">
               <q-field
                       error-label="Por favor, preencha com telefone válido">
                 <q-input
@@ -81,10 +81,9 @@
             <q-btn  color="primary" @click="currentStep = 'second'">Avançar</q-btn>
           </q-stepper-navigation>
       </q-step>
-  </div>
       <q-step name="second" title="Endereço">
         <div class="row xs-gutter">
-          <div class="col-xs-12 col-sm-3">
+          <div class="col-xs-12 col-sm-4">
             <q-field
                     :error="$v.employee.zip_code.$error"
                     error-label="Por favor, preencha este campo">
@@ -100,7 +99,7 @@
           </div>
         </div>
         <div class="row sm-gutter">
-          <div class="col-xs-12 col-sm-5">
+          <div class="col-xs-12 col-sm-8">
             <q-field
                     :error="$v.employee.city.$error"
                     error-label="Por favor, preencha este campo">
@@ -113,7 +112,7 @@
               />
             </q-field>
           </div>
-          <div class="col-xs-12 col-sm-3">
+          <div class="col-xs-12 col-sm-4">
             <q-field
                     :error="$v.employee.state.$error"
                     error-label="Por favor, preencha este campo">
@@ -127,7 +126,7 @@
           </div>
         </div>
         <div class="row sm-gutter">
-          <div class="col-xs-12 col-sm-5">
+          <div class="col-xs-12 col-sm-7">
             <q-field
                     :error="$v.employee.street.$error"
                     error-label="Por favor, preencha este campo">
@@ -140,7 +139,7 @@
               />
             </q-field>
           </div>
-          <div class="col-xs-12 col-sm-3">
+          <div class="col-xs-12 col-sm-5">
             <q-field
                     :error="$v.employee.neighborhood.$error"
                     error-label="Por favor, preencha este campo">
@@ -155,7 +154,7 @@
           </div>
         </div>
         <div class="row sm-gutter">
-          <div class="col-xs-12 col-sm-3">
+          <div class="col-xs-12 col-sm-4">
             <q-field
                     :error="$v.employee.number.$error"
                     error-label="Por favor, preencha este campo">
@@ -168,7 +167,7 @@
               />
             </q-field>
           </div>
-          <div class="col-xs-12 col-sm-5">
+          <div class="col-xs-12 col-sm-8">
             <q-field
                     :error="$v.employee.complement.$error"
                     error-label="Por favor, preencha este campo">
@@ -188,6 +187,7 @@
         </q-stepper-navigation>
       </q-step>
     </q-stepper>
+  </div>
   </div>
 </template>
 

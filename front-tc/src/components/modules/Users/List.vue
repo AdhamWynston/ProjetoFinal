@@ -1,5 +1,19 @@
 <template>
   <div class="layout-padding">
+    <h3>
+      <div class="row justify-center">
+        Usuários Cadastrados
+      </div>
+    </h3>
+    <q-modal
+            ref="userModal"
+            :content-css="{padding: '20px', minWidth: '40vw', minHeight: '30vh'}"
+            position="bottom">
+      <router-view />
+      <br>
+      <q-btn class="small" @click="closeModal" flat>Fechar</q-btn>
+      <q-btn class="small" color="blue" @click="createUser()" flat >Salvar</q-btn>
+    </q-modal>
     <q-data-table
             :data="users.data || []"
             :columns="columns"
@@ -14,7 +28,7 @@
       </template>
     </q-data-table>
     <q-fixed-position corner="bottom-left" :offset="[16, 16]">
-      <q-btn  @click="goCreate()" round icon="ion-plus-round" color="primary">
+      <q-btn  @click="openModal('/admin/users/create')" round icon="ion-plus-round" color="primary">
       </q-btn>
     </q-fixed-position>
   </div>
@@ -26,6 +40,8 @@
   import moment from 'moment'
   import dataTableUserMixin from '../../../mixins/dataTableUser.mixin'
   import {
+    Events,
+    QModal,
     QFixedPosition,
     QIcon,
     QDataTable,
@@ -41,6 +57,8 @@
   } from 'quasar'
   export default {
     components: {
+      Events,
+      QModal,
       QFixedPosition,
       QIcon,
       QDataTable,
@@ -64,6 +82,16 @@
       }
     },
     methods: {
+      createUser () {
+        Events.$emit('createUser')
+      },
+      openModal (url) {
+        this.$router.push(url)
+        this.$refs.userModal.open()
+      },
+      closeModal () {
+        this.$router.push('/admin/users')
+      },
       goCreate () {
         return this.$router.push('/admin/users/create')
       },

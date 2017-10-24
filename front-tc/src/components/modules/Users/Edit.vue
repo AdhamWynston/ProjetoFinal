@@ -1,209 +1,176 @@
 <template>
   <div>
-
-    <div class="row">
-      <q-stepper v-model="currentStep">
-        <q-step name="first" title="Dados Pessoais">
-          <div class="row sm-gutter">
-            <div class="col-12">
-              <q-input
-                      v-model="client.name"
-                      class="no-margin"
-                      float-label="Nome"
-              />
-            </div>
-            <div class="col-xs-12 col-sm-6">
-              <q-input
-                      v-model="cpfComputed"
-                      class="no-margin"
-                      float-label="Nº Documento"
-              />
-            </div>
-            <div class="col-xs-12 col-sm-6">
-              <q-input
-                      v-model="client.email"
-                      type="email"
-                      class="no-margin"
-                      float-label="E-mail"
-                      required
-              />
-            </div>
-            <div class="col-xs-12 col-sm-6">
-              <q-input
-                      type="text"
-                      v-model="phoneComputed"
-                      class="no-margin"
-                      max-length="15"
-                      float-label="Telefone" />
-            </div>
-            <div class="col-xs-12 col-sm-6">
-              <q-input
-                      type="text"
-                      max-length="15"
-                      class="no-margin"
-                      v-model="phoneAlternativeComputed"
-                      float-label="Telefone Alernativo"
-              />
-            </div>
-          </div>
-          <q-stepper-navigation>
-            <q-btn color="primary" @click="currentStep = 'second'">Avançar</q-btn>
-          </q-stepper-navigation>
-        </q-step>
-        <q-step name="second" title="Endereço">
-          <div class="row sm-gutter">
-            <div class="col-12">
-              <q-input
-                      v-model="client.name"
-                      class="no-margin"
-                      float-label="Nome"
-              />
-            </div>
-            <div class="col-xs-12 col-sm-6">
-              <q-input
-                      v-model="client.document"
-                      class="no-margin"
-                      float-label="Nº Documento"
-              />
-            </div>
-            <div class="col-xs-12 col-sm-6">
-              <q-input
-                      v-model="client.email"
-                      type="email"
-                      class="no-margin"
-                      float-label="E-mail"
-                      required
-              />
-            </div>
-            <div class="col-xs-12 col-sm-6">
-              <q-input
-                      v-model="phoneComputed"
-                      class="no-margin"
-                      float-label="Telefone" />
-            </div>
-            <div class="col-xs-12 col-sm-6">
-              <q-input
-                      type="text"
-                      max-length="15"
-                      v-model="phoneAlternativeComputed"
-                      float-label="Telefone Alernativo"
-              />
-            </div>
-          </div>
-          <q-stepper-navigation>
-            <q-btn color="primary" @click="currentStep = 'first'">Voltar</q-btn>
-            <q-btn color="green" @click="seila()">Salvar</q-btn>
-          </q-stepper-navigation>
-        </q-step>
-      </q-stepper>
+    <div class="row sm-gutter">
+      <div class="col-xs-12 col-sm-12">
+        <q-field
+                :error="$v.user.name.$error"
+                error-label="Por favor, preencha este campo">
+          <q-input
+                  v-model="user.name"
+                  stack-label="Nome Completo"
+                  @blur="$v.user.name.$touch"
+          />
+        </q-field>
+      </div>
+      <div class="col-xs-12 col-sm-12">
+        <q-field
+                :error="$v.user.email.$error"
+                error-label="Por favor, preencha este campo">
+          <q-input
+                  v-model="user.email"
+                  stack-label="E-mail"
+                  @blur="$v.user.email.$touch"
+          />
+        </q-field>
+      </div>
+      <div class="col-xs-12 col-sm-4">
+        <q-field
+                :error="$v.user.role.$error"
+                error-label="Por favor, preencha este campo">
+          <q-select
+                  v-model="user.role"
+                  float-label="Permissão"
+                  @blur="$v.user.role.$touch"
+                  :options="roles"
+          />
+        </q-field>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
-  import { required, email } from 'vuelidate/lib/validators'
-  var CPF = require('cpf_cnpj').CPF
-  import PhoneFormatter from '../../../services/my-formatter'
-  var CNPJ = require('cpf_cnpj').CNPJ
   import {
+    Events,
+    QSelect,
+    QField,
     QInput,
+    Loading,
+    QCard,
     QBtn,
-    QAlert,
     Toast,
-    QStepper,
-    QStep,
-    QStepperNavigation
-  } from 'quasar'
+    QCardTitle,
+    QCardMedia,
+    QCardActions,
+    QCardSeparator,
+    QCardMain
+  }
+    from 'quasar'
+  import { required, email } from 'vuelidate/lib/validators'
   export default {
-    methods: {
-      seila () {
-        console.log(CPF.isValid('01335065145'))
-      }
-    },
-    computed: {
-      client () {
-        return this.$store.state.clients.one || {}
-      },
-      documentComputed: {
-        get: function () {
-          if (this.client && this.client.document) {
-            return CPF.format(this.client.document)
-          }
-          else {
-            return ''
-          }
-        },
-        set: function (newValue) {
-          this.client.document = CPF.strip(newValue)
-        }
-      },
-      cnpjComputed: {
-        get: function () {
-          if (this.client && this.client.document) {
-            return CNPJ.format(this.client.document)
-          }
-          else {
-            return ''
-          }
-        },
-        set: function (newValue) {
-          this.client.document = CNPJ.strip(newValue)
-        }
-      },
-      phoneComputed: {
-        get: function () {
-          if (this.client && this.client.phone) {
-            return PhoneFormatter.modules.phoneFormatter(this.client.phone)
-          }
-          else {
-            return ''
-          }
-        },
-        set: function (newValue) {
-          console.log(newValue)
-          this.client.phone = PhoneFormatter.modules.strip(newValue)
-        }
-      },
-      phoneAlternativeComputed: {
-        get: function () {
-          if (this.client && this.client.phoneAlternative) {
-            return PhoneFormatter.modules.phoneFormatter(this.client.phoneAlternative)
-          }
-          else {
-            return ''
-          }
-        },
-        set: function (newValue) {
-          console.log(newValue)
-          this.client.phoneAlternative = PhoneFormatter.modules.strip(newValue)
-        }
-      }
-    },
     data () {
       return {
-        currentStep: 'first',
-        form: {
+        error: false,
+        roles: [
+          {
+            label: 'Usuário',
+            value: 2
+          },
+          {
+            label: 'Administrador',
+            value: 1
+          }
+        ],
+        user: {
+          name: '',
           email: '',
-          phone: ''
+          role: ''
         }
       }
     },
     validations: {
-      form: {
-        email: { required, email }
+      user: {
+        name: { required },
+        email: { email, required },
+        role: { required }
+      }
+    },
+    methods: {
+      closeLoading () {
+        setTimeout(Loading.hide, 300)
+      },
+      submit () {
+        Loading.show({
+          delay: 300
+        })
+        if (this.$v.user.$invalid === false) {
+          this.$store.dispatch('userInsert', this.user)
+            .then(() => {
+              this.$router.push('/admin/users')
+              this.closeLoading()
+              Toast.create.positive({
+                html: 'Usuário cadastrado com sucesso',
+                icon: 'done'
+              })
+            })
+            .catch(() => {
+              this.closeLoading()
+              Toast.create.negative({
+                html: 'Não pode ser cadastrado',
+                icon: 'cancel'
+              })
+            })
+        }
+        else {
+          this.closeLoading()
+          Toast.create.negative('Verifique os dados')
+        }
+      }
+    },
+    mounted () {
+      Events.$on('createUser', () => {
+        this.submit()
+      })
+    },
+    computed: {
+      user () {
+        return this.$store.state.users.one || {}
+      },
+      nameError () {
+        if (!this.$v.employee.name.required) {
+          console.log(this.$v.employee.name.required)
+          return 'Este campo é obrigatório!'
+        }
+        else if (!this.$v.employee.name.minLength) {
+          console.log(this.$v.employee.name.minLength)
+          return 'Preencha com nome válido!'
+        }
+        else {
+          return null
+        }
+      },
+      emailError () {
+        if (!this.$v.user.email.required) {
+          return 'Este campo é obrigatório!'
+        }
+        else if (!this.$v.user.email.email) {
+          return 'Preencha com E-mail válido!'
+        }
+        else if (!this.$v.user.email.isUnique) {
+          return 'Este E-mail já está cadastrado!'
+        }
+        else {
+          return null
+        }
       }
     },
     components: {
+      Loading,
+      Events,
+      QSelect,
+      QField,
       QInput,
-      Toast,
+      QCard,
       QBtn,
-      QAlert,
-      QStepper,
-      QStep,
-      QStepperNavigation
+      Toast,
+      QCardTitle,
+      QCardMedia,
+      QCardActions,
+      QCardSeparator,
+      QCardMain
     }
   }
 </script>
 
-<style scoped>
+<style lang="stylus">
 </style>
