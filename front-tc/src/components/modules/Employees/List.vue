@@ -1,10 +1,10 @@
 <template>
   <div class="layout-padding">
-    <h3>
+    <h5>
       <div class="row justify-center">
         Funcionários Cadastrados
       </div>
-    </h3>
+    </h5>
     <q-data-table
             :data="employees.data || []"
             :columns="columns"

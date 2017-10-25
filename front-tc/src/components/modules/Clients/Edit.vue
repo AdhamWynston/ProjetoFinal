@@ -257,7 +257,7 @@
               this.$store.dispatch('clientsGet', this.$route.params.id)
               this.$router.push('/clients')
               Toast.create.positive({
-                html: 'Atualizado com sucesso',
+                html: 'Atualizado com sucesso!',
                 icon: 'done'
               })
             })

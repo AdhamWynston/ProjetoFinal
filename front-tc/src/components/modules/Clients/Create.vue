@@ -3,7 +3,7 @@
     <div style="width: 700px; max-width: 90vw;">
       <q-stepper v-model="currentStep" vertical>
         <q-step name="first" title="Dados Pessoais" color="light">
-          <div class="row xs-gutter">
+          <div class="row md-gutter">
             <div class="col-xs-12 col-sm-12">
               <q-field
                       :error="$v.client.name.$error"
@@ -17,8 +17,6 @@
                 />
               </q-field>
             </div>
-          </div>
-          <div class="row xs-gutter">
             <div class="col-xs-12 col-sm-4">
               <q-field
                       :error="$v.client.type.$error"
@@ -54,14 +52,11 @@
                 </template>
               </q-field>
             </div>
-          </div>
-          <div class="row sm-gutter">
             <div class="col-xs-12 col-sm-12">
               <q-field :error="error" error-label="Este E-mail já existe ou está inválido">
                 <q-input
                         v-model="client.email"
                         type="email"
-                        class="no-margin"
                         float-label="E-mail"
                         @blur="$v.client.email.$touch"
                         :error="$v.client.email.$error"
@@ -69,8 +64,6 @@
                 />
               </q-field>
             </div>
-          </div>
-          <div class="row sm-gutter">
             <div class="col-xs-12 col-sm-6">
               <q-field :error="error" error-label="Por favor, preencha com telefone válido">
                 <q-input
@@ -206,7 +199,7 @@
             </div>
           </div>
           <q-stepper-navigation>
-            <q-btn color="primary" @click="currentStep = 'first'">Voltar</q-btn>
+            <q-btn flat @click="currentStep = 'first'">Voltar</q-btn>
             <q-btn color="green" :disabled="$v.client.$invalid" @click="submit()">Salvar</q-btn>
           </q-stepper-navigation>
         </q-step>

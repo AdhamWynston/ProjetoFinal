@@ -45,8 +45,8 @@
                             </div>
                         </div>
                         <br>
-                        <q-btn @click="back"flat>Voltar</q-btn>
-                        <q-btn color="primary" @click="submit">Cadastrar</q-btn>
+                        <q-btn @click="backCreate"flat>Voltar</q-btn>
+                        <q-btn color="green" :disabled="$v.user.$invalid" @click="submit">Cadastrar</q-btn>
                     </q-card-main>
                 </q-card>
             </div>
@@ -100,8 +100,8 @@ export default {
       }
     },
     methods: {
-      back () {
-        this.$router.push('')
+      backCreate () {
+        this.$router.push('/admin/users')
       },
       closeLoading () {
         setTimeout(Loading.hide, 300)

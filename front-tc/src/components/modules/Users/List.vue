@@ -1,10 +1,10 @@
 <template>
   <div class="layout-padding">
-    <h3>
+    <h5>
       <div class="row justify-center">
         Usuários Cadastrados
       </div>
-    </h3>
+    </h5>
     <q-modal
             ref="userModal"
             :content-css="{padding: '20px', minWidth: '40vw', minHeight: '30vh'}"

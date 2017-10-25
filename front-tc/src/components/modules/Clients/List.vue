@@ -1,10 +1,10 @@
 <template>
   <div class="layout-padding">
-    <h3>
       <div class="row justify-center">
+        <h5>
         Clientes Cadastrados
+    </h5>
       </div>
-    </h3>
     <q-data-table
             :data="clients.data || []"
             :columns="columns"

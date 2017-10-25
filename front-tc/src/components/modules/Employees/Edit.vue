@@ -182,7 +182,7 @@
           </div>
         </div>
         <q-stepper-navigation>
-          <q-btn color="primary" @click="currentStep = 'first'">Voltar</q-btn>
+          <q-btn color="secundary" flat @click="currentStep = 'first'">Voltar</q-btn>
           <q-btn color="green" :disabled="$v.employee.$invalid" @click="save()">Salvar</q-btn>
         </q-stepper-navigation>
       </q-step>

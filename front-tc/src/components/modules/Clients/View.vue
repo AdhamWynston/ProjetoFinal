@@ -7,7 +7,7 @@
       </h5>
       </div>
     </div>
-    <div class="row">
+    <div class="row justify-center">
       <div class="col-xs-12 col-sm-8 col-md-8">
     <q-list link>
       <q-collapsible opened icon="perm_identity" label="Dados Pessoais">

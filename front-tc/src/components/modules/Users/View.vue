@@ -1,13 +1,13 @@
 <template>
   <div class="layout-padding justify-center">
-    <div class="row">
+    <div class="row justify-center">
       <div class="col-auto">
       <h5>
        Informações do Usuário
       </h5>
       </div>
     </div>
-    <div class="row">
+    <div class="row justify-center">
       <div class="col-xs-12 col-sm-8 col-md-8">
     <q-list link>
       <q-collapsible opened  icon="perm_identity" label="Dados Pessoais">
@@ -69,7 +69,7 @@
       </div>
     </div>
     <q-fixed-position corner="bottom-left" :offset="[16, 16]">
-      <q-btn @click="openModal('/clients/' + client.id + '/edit')" round color="orange">
+      <q-btn @click="goEdit" round color="orange">
         <q-icon name="mode_edit" />
       </q-btn>
     </q-fixed-position>
@@ -185,6 +185,9 @@ export default {
     }
   },
   methods: {
+    goEdit () {
+      this.$router.push('/admin/users/' + this.user.id + '/edit')
+    },
     alterChecked () {
       let check
       if (this.user.status === 1) {
