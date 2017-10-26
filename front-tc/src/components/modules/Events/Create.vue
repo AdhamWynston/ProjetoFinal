@@ -1,44 +1,109 @@
 <template>
     <div class="layout-padding row justify-center">
-        <div style="width: 500px; max-width: 90vw;">
-            <q-search inverted color="secondary" v-model="terms" placeholder="Featuring static data">
-                <q-autocomplete
-                        v-model="terms"
-                        @search="search"
-                        :max-results="4"
-                        @selected="selected"
-                />
-            </q-search>
+        <div style="width: 600px; max-width: 90vw;">
+            <q-stepper v-model="step" flat ref="stepper">
+                <q-step name="first" title="Cliente" color="light">
+                    <div>
+                        <div class="row sm-gutter">
+                            <div class="col-xs-12 col-sm-12 col-md-12">
+                                <q-search inverted color="secondary" v-model="terms" placeholder="Selecione o Cliente">
+                                    <q-autocomplete
+                                            v-model="terms"
+                                            @search="search"
+                                            :max-results="4"
+                                            @selected="selected"
+                                    />
+                                </q-search>
+                            </div>
+                            </div>
+                        </div>
+                </q-step>
+                <q-step name="second" title="Dados do Evento">
+                    <div>
+                        <div class="row sm-gutter">
+                            <div class="col-xs-12 col-sm-12">
+                                <q-field
+                                        :error="$v.form.name.$error"
+                                        error-label="Por favor, preencha este campo">
+                                    <q-input
+                                            max-length="100"
+                                            v-model="form.name"
+                                            float-label="Nome"
+                                            class="no-margin"
+                                            @blur="$v.form.name.$touch"
+                                    />
+                                </q-field>
+                            </div>
+                            <div class="col-xs-12 col-sm-8">
+                            </div>
+                        </div>
+                    </div>
+                </q-step>
+                <q-stepper-navigation>
+                    <q-btn
+                            v-if="step !== 'first'"
+                            color="primary"
+                            flat
+                            @click="$refs.stepper.previous()"
+                    >
+                        Voltar
+                    </q-btn>
+                    <template v-if="step === 'second'">
+                        <q-btn color="primary" :disabled="$v.terms.$invalid" @click="submit"> Cadastrar </q-btn>
+                    </template>
+                    <template v-else>
+                        <q-btn color="primary" :disabled="$v.terms.$invalid" @click="$refs.stepper.next()" >Avançar</q-btn>
+                    </template>
+                </q-stepper-navigation>
+            </q-stepper>
         </div>
     </div>
 </template>
 
 <script>
+  import { required } from 'vuelidate/lib/validators'
+  import { CNPJ, CPF } from 'cpf_cnpj'
   import {
-    QAutocomplete,
+    QInput,
+    QSelect,
+    QBtn,
+    Loading,
     QField,
+    QAlert,
+    Toast,
+    QStepper,
+    QStep,
+    QStepperNavigation,
+    QAutocomplete,
     QSearch,
     filter,
-    QInput
+    QCard,
+    QCardTitle,
+    QCardMedia,
+    QCardActions,
+    QCardSeparator,
+    QCardMain,
+    QList,
+    QItem,
+    QItemMain,
+    QItemSide,
+    QItemTile,
+    QCollapsible,
+    QRating,
+    QParallax,
+    QIcon
   } from 'quasar'
-
-//  function parseClients () {
-//    return this.cList.data.map(client => {
-//      let name = client.name
-//      let id = client.id
-//      return {
-//        label: name,
-//        sublabel: id,
-//        value: name
-//      }
-//    })
-//  }
   export default {
     data () {
       return {
+        step: 'first',
+        error: false,
         terms: '',
         clients: [],
-        selectedClient: { address: {} }
+        selectedClient: { address: {} },
+        form: {
+          name: ''
+        }
       }
     },
     computed: {
@@ -47,16 +112,34 @@
       },
       parseClients () {
         return this.clients.map(client => {
+          let document = this.documentFormat(client.document)
           return {
             allData: client,
             label: client.name,
-            sublabel: client.document,
+            sublabel: 'CPF: ' + document,
             value: client.name
           }
         })
       }
     },
+    validations: {
+      terms: { required },
+      form: {
+        name: { required }
+      }
+    },
     methods: {
+      documentFormat (value) {
+        if (value.length === 11) {
+          return CPF.format(value)
+        }
+        else {
+          return CNPJ.format(value)
+        }
+      },
+      submit () {
+        console.log('submit')
+      },
       search (terms, done) {
         setTimeout(() => {
           done(filter(terms, {field: 'value', list: this.parseClients}))
@@ -70,17 +153,39 @@
           .then(response => {
             this.clients = response.data
           })
-        console.log(this.clients)
       }
     },
     mounted () {
       this.getClients()
     },
     components: {
+      QSelect,
+      Loading,
+      QAlert,
+      Toast,
+      QStepper,
+      QStep,
+      QStepperNavigation,
       QAutocomplete,
       QField,
       QSearch,
-      QInput
+      QInput,
+      QCard,
+      QCardTitle,
+      QCardMedia,
+      QCardActions,
+      QCardSeparator,
+      QCardMain,
+      QList,
+      QItem,
+      QItemMain,
+      QItemSide,
+      QItemTile,
+      QCollapsible,
+      QRating,
+      QBtn,
+      QParallax,
+      QIcon
     }
   }
 </script>
