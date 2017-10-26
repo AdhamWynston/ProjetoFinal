@@ -20,12 +20,13 @@
                 </q-step>
                 <q-step name="second" title="Dados do Evento">
                     <div>
-                        <div class="row sm-gutter">
+                        <div class="row xs-gutter">
                             <div class="col-xs-12 col-sm-12">
                                 <q-field
                                         :error="$v.form.name.$error"
                                         error-label="Por favor, preencha este campo">
                                     <q-input
+                                            autofocus
                                             max-length="100"
                                             v-model="form.name"
                                             float-label="Nome"
@@ -34,7 +35,19 @@
                                     />
                                 </q-field>
                             </div>
-                            <div class="col-xs-12 col-sm-8">
+                            <div class="col-xs-12 col-sm-5">
+                                <q-field
+                                        :error="$v.form.quantityEmployee.$error"
+                                        error-label="Por favor, preencha este campo">
+                                    <q-input
+                                            type="number"
+                                            v-model="form.quantityEmployee"
+                                            min="0"
+                                            float-label="Quantidade de Seguranças"
+                                            class="no-margin"
+                                            @blur="$v.form.quantityEmployee.$touch"
+                                    />
+                                </q-field>
                             </div>
                         </div>
                     </div>
@@ -49,7 +62,7 @@
                         Voltar
                     </q-btn>
                     <template v-if="step === 'second'">
-                        <q-btn color="primary" :disabled="$v.terms.$invalid" @click="submit"> Cadastrar </q-btn>
+                        <q-btn color="primary" :disabled="$v.form.$invalid" @click="submit"> Cadastrar </q-btn>
                     </template>
                     <template v-else>
                         <q-btn color="primary" :disabled="$v.terms.$invalid" @click="$refs.stepper.next()" >Avançar</q-btn>
@@ -102,7 +115,8 @@
         clients: [],
         selectedClient: { address: {} },
         form: {
-          name: ''
+          name: '',
+          quantityEmployee: ''
         }
       }
     },
@@ -125,7 +139,8 @@
     validations: {
       terms: { required },
       form: {
-        name: { required }
+        name: { required },
+        quantityEmployee: { required }
       }
     },
     methods: {
