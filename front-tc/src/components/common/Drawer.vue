@@ -7,17 +7,21 @@
                 <q-item-side icon="home" />
                 <q-item-main label="Home" sublabel="General Information" />
             </q-side-link>
+            <q-side-link item to="/events">
+                <q-item-side icon="ion-calendar" />
+                <q-item-main label="Eventos" sublabel="Modúlo Eventos" />
+            </q-side-link>
             <q-side-link item to="/clients">
                 <q-item-side icon="ion-ios-people" />
                 <q-item-main label="Clientes" sublabel="Modúlo Clientes" />
             </q-side-link>
-            <q-side-link item to="/admin/users">
-                <q-item-side icon="supervisor_account" />
-                <q-item-main label="Usuários" sublabel="Modúlo Usuários" />
-            </q-side-link>
             <q-side-link item to="/employees">
-                <q-item-side icon="insert_chart" />
+                <q-item-side icon="supervisor_account" />
                 <q-item-main label="Funcionários" sublabel="Modúlo Funcionários" />
+            </q-side-link>
+            <q-side-link item to="/admin/users">
+                <q-item-side icon="perm_identity" />
+                <q-item-main label="Usuários" sublabel="Modúlo Usuários" />
             </q-side-link>
             <q-item link @click="logout()">
                 <q-item-side  icon="ion-android-exit" />

@@ -1,6 +1,6 @@
 <template>
     <div class="layout-padding row justify-center">
-            <div class="row">
+
                 <q-card style="width: 700px">
                     <q-card-title>
                         <h4>
@@ -8,49 +8,38 @@
                         </h4>
                     </q-card-title>
                     <q-card-main>
-                        <div class="row sm-gutter">
-                            <div class="col-xs-12 col-sm-8">
-                                <q-field
-                                        :error="$v.user.name.$error"
-                                        error-label="Por favor, preencha este campo">
+                        <div>
+                            <div class="row xs-gutter">
+                                <div class="col-xs-12 col-sm-12">
                                     <q-input
                                             v-model="user.name"
-                                            stack-label="Nome Completo"
-                                            @blur="$v.user.name.$touch"
-                                    />
-                                </q-field>
-                            </div>
-                            <div class="col-xs-12 col-sm-8">
-                                <q-field
-                                        :error="$v.user.email.$error"
-                                        error-label="Por favor, preencha este campo">
+                                            class="no-margin"
+                                            float-label="Nome Completo"
+                                            @blur="$v.user.name.$touch"/>
+                                </div>
+                                <div class="col-xs-12 col-sm-12">
                                     <q-input
                                             v-model="user.email"
-                                            stack-label="E-mail"
-                                            @blur="$v.user.email.$touch"
-                                    />
-                                </q-field>
-                            </div>
-                            <div class="col-xs-12 col-sm-6">
-                                <q-field
-                                        :error="$v.user.role.$error"
-                                        error-label="Por favor, preencha este campo">
-                                    <q-select
-                                            v-model="user.role"
-                                            float-label="Permissão"
-                                            @blur="$v.user.role.$touch"
-                                            :options="roles"
-                                    />
-                                </q-field>
+                                            class="no-margin"
+                                            float-label="E-mail"
+                                            @blur="$v.user.email.$touch"/>
+                                </div>
+                                <div class="col-xs-12 col-sm-6">
+                                        <q-select
+                                                v-model="user.role"
+                                                float-label="Permissão"
+                                                @blur="$v.user.role.$touch"
+                                                :options="roles"
+                                        />
+                                </div>
                             </div>
                         </div>
                         <br>
                         <q-btn @click="backCreate"flat>Voltar</q-btn>
-                        <q-btn color="green" :disabled="$v.user.$invalid" @click="submit">Cadastrar</q-btn>
+                        <q-btn color="primary" @click="submit">Cadastrar</q-btn>
                     </q-card-main>
                 </q-card>
             </div>
-    </div>
 </template>
 
 <script>

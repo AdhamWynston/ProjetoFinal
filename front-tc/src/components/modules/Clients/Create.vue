@@ -1,10 +1,11 @@
 <template>
   <div class="layout-padding row justify-center">
     <div style="width: 700px; max-width: 90vw;">
-      <q-stepper v-model="currentStep" vertical>
+      <q-stepper v-model="step" flat ref="stepper">
         <q-step name="first" title="Dados Pessoais" color="light">
-          <div class="row md-gutter">
-            <div class="col-xs-12 col-sm-12">
+          <div>
+          <div class="row sm-gutter">
+            <div class="col-xs-12 col-sm-12 col-md-12">
               <q-field
                       :error="$v.client.name.$error"
                       error-label="Por favor, preencha este campo">
@@ -17,7 +18,7 @@
                 />
               </q-field>
             </div>
-            <div class="col-xs-12 col-sm-4">
+            <div class="col-xs-12 col-sm-4 col-md-4">
               <q-field
                       :error="$v.client.type.$error"
                       error-label="Por favor, preencha este campo">
@@ -29,7 +30,7 @@
                 />
               </q-field>
             </div>
-            <div class="col-xs-12 col-sm-8">
+            <div class="col-xs-12 col-sm-8 col-md-8">
               <q-field
                       :error="$v.client.document.$error"
                       error-label="Este CPF já está cadastrado ou é inválido!">
@@ -52,7 +53,7 @@
                 </template>
               </q-field>
             </div>
-            <div class="col-xs-12 col-sm-12">
+            <div class="col-xs-12 col-sm-12 col-md-12">
               <q-field :error="error" error-label="Este E-mail já existe ou está inválido">
                 <q-input
                         v-model="client.email"
@@ -64,7 +65,7 @@
                 />
               </q-field>
             </div>
-            <div class="col-xs-12 col-sm-6">
+            <div class="col-xs-12 col-sm-6 col-md-6">
               <q-field :error="error" error-label="Por favor, preencha com telefone válido">
                 <q-input
                         type="text"
@@ -77,7 +78,7 @@
                         float-label="Telefone" />
               </q-field>
             </div>
-            <div class="col-xs-12 col-sm-6">
+            <div class="col-xs-12 col-sm-6 col-md-6">
               <q-field
                       :error="$v.client.phoneAlternative.$error"
                       error-label="Por favor, preencha com telefone válido">
@@ -93,14 +94,12 @@
               </q-field>
             </div>
           </div>
-
-          <q-stepper-navigation>
-            <q-btn  color="primary" @click="currentStep = 'second'">Avançar</q-btn>
-          </q-stepper-navigation>
+          </div>
         </q-step>
         <q-step name="second" title="Endereço">
-          <div class="row xs-gutter">
-            <div class="col-xs-12 col-sm-4">
+          <div>
+          <div class="row sm-gutter">
+            <div class="col-xs-12 col-sm-5">
               <q-field
                       :error="$v.client.zip_code.$error"
                       error-label="Por favor, preencha este campo">
@@ -114,8 +113,6 @@
                 />
               </q-field>
             </div>
-          </div>
-          <div class="row sm-gutter">
             <div class="col-xs-12 col-sm-8">
               <q-field
                       :error="$v.client.city.$error"
@@ -141,8 +138,6 @@
                 />
               </q-field>
             </div>
-          </div>
-          <div class="row sm-gutter">
             <div class="col-xs-12 col-sm-7">
               <q-field
                       :error="$v.client.street.$error"
@@ -169,8 +164,6 @@
                 />
               </q-field>
             </div>
-          </div>
-          <div class="row sm-gutter">
             <div class="col-xs-12 col-sm-4">
               <q-field
                       :error="$v.client.number.$error"
@@ -198,11 +191,24 @@
               </q-field>
             </div>
           </div>
-          <q-stepper-navigation>
-            <q-btn flat @click="currentStep = 'first'">Voltar</q-btn>
-            <q-btn color="green" :disabled="$v.client.$invalid" @click="submit()">Salvar</q-btn>
-          </q-stepper-navigation>
+          </div>
         </q-step>
+        <q-stepper-navigation>
+          <q-btn
+                  v-if="step !== 'first'"
+                  color="primary"
+                  flat
+                  @click="$refs.stepper.previous()"
+          >
+            Voltar
+          </q-btn>
+          <template v-if="step === 'second'">
+            <q-btn color="primary" :disabled="$v.client.$invalid" @click="submit"> Cadastrar </q-btn>
+          </template>
+          <template v-else>
+            <q-btn color="primary" @click="$refs.stepper.next()" >Avançar</q-btn>
+          </template>
+        </q-stepper-navigation>
       </q-stepper>
     </div>
   </div>
@@ -294,7 +300,7 @@
     data () {
       return {
         error: false,
-        currentStep: 'first',
+        step: 'first',
         client: {
           email: '',
           name: '',

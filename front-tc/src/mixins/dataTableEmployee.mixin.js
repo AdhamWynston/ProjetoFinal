@@ -12,7 +12,7 @@ export default {
           maxHeight: '500px'
         },
         selection: 'single',
-        rowHeight: '50px',
+        rowHeight: '40px',
         responsive: true,
         pagination: {
           rowsPerPage: 5,

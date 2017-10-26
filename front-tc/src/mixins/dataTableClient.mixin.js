@@ -12,7 +12,7 @@ export default {
           maxHeight: '500px'
         },
         selection: 'single',
-        rowHeight: '50px',
+        rowHeight: '40px',
         responsive: true,
         pagination: {
           rowsPerPage: 5,
@@ -39,7 +39,7 @@ export default {
         {
           label: 'Nome',
           field: 'name',
-          width: '100px',
+          width: '90px',
           sort: true,
           filter: true
         },
@@ -80,7 +80,7 @@ export default {
           label: 'Cadastrado em',
           field: 'created_at',
           classes: 'bg-orange-2',
-          width: '40px',
+          width: '50px',
           sort: true,
           filter: true
         }

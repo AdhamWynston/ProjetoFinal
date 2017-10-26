@@ -28,12 +28,17 @@ export default new VueRouter({
         // HOME
         { path: '', component: load('Home') },
         { path: '/home', component: load('Home'), name: 'home', meta: { auth: true } },
-        // CLIENTE
+        // EVENT
+        { path: '/events', component: load('modules/Events/List'), name: 'events.list', meta: { auth: true } },
+        { path: '/events/create', component: load('modules/Events/Create'), name: 'events.create', meta: { auth: true } },
+        { path: '/events/:id', component: load('modules/Events/View'), name: 'events.view' },
+        { path: '/events/:id/edit', component: load('modules/Events/Edit'), name: 'events.edit', meta: { auth: true } },
+        // CLIENT
         { path: '/clients', component: load('modules/Clients/List'), name: 'clients.list', meta: { auth: true } },
         { path: '/clients/create', component: load('modules/Clients/Create'), name: 'clients.create', meta: { auth: true } },
         { path: '/clients/:id', component: load('modules/Clients/View'), name: 'clients.view' },
         { path: '/clients/:id/edit', component: load('modules/Clients/Edit'), name: 'clients.edit', meta: { auth: true } },
-        // FUNCIONARIO
+        // EMPLOYEE
         { path: '/employees', component: load('modules/Employees/List'), name: 'employees.list', meta: { auth: true } },
         { path: '/employees/create', component: load('modules/Employees/Create'), name: 'employees.create', meta: { auth: true } },
         { path: '/employees/:id', component: load('modules/Employees/View'), name: 'employees.view' },

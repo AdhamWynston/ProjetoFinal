@@ -1,11 +1,9 @@
 <template>
   <div class="layout-padding justify-center">
-    <div class="row">
-      <div class="col-auto">
+    <div class="row justify-center">
       <h5>
        Informações do Cliente
       </h5>
-      </div>
     </div>
     <div class="row justify-center">
       <div class="col-xs-12 col-sm-8 col-md-8">
