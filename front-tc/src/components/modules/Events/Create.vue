@@ -1,12 +1,12 @@
 <template>
     <div class="layout-padding row justify-center">
         <div style="width: 600px; max-width: 90vw;">
-            <q-stepper v-model="step" flat ref="stepper">
+            <q-stepper v-model="step" flat ref="stepper" vertical>
                 <q-step name="first" title="Cliente" color="light">
                     <div>
                         <div class="row sm-gutter">
                             <div class="col-xs-12 col-sm-12 col-md-12">
-                                <q-search inverted color="secondary" v-model="terms" placeholder="Selecione o Cliente">
+                                <q-search v-model="terms" placeholder="Selecione o Cliente">
                                     <q-autocomplete
                                             v-model="terms"
                                             @search="search"
@@ -22,6 +22,9 @@
                     <div>
                         <div class="row xs-gutter">
                             <div class="col-xs-12 col-sm-12">
+                                Cliente: {{ selectedClient.name }}
+                            </div>
+                            <div class="col-xs-12 col-sm-12">
                                 <q-field
                                         :error="$v.form.name.$error"
                                         error-label="Por favor, preencha este campo">
@@ -29,11 +32,43 @@
                                             autofocus
                                             max-length="100"
                                             v-model="form.name"
-                                            float-label="Nome"
+                                            float-label="Nome do evento"
                                             class="no-margin"
                                             @blur="$v.form.name.$touch"
                                     />
                                 </q-field>
+                            </div>
+                            <div class="col-xs-12 col-sm-6">
+                                <q-datetime
+                                        id="started"
+                                        v-model="form.startedDate"
+                                        stack-label="Início do Evento"
+                                        type="datetime"
+                                        format24h
+                                        format="DD/MM/YYYY HH:mm"
+                                        ok-label="OK"
+                                        clear-label="Limpar"
+                                        cancel-label="Cancelar"
+                                        :day-names="['Dom','Seg', 'Ter','Qua','Qui','Sex','Sáb']"
+                                        :month-names="['Janeiro', 'Fevereiro','Março','Abril','Maio','Junho',
+                'Julho','Agosto','Setembro','Outubro','Novembro','Dezembro']"
+                                />
+                            </div>
+                            <div class="col-xs-12 col-sm-6">
+                                <q-datetime
+                                        id="terminated"
+                                        format24h
+                                        v-model="form.terminatedDate"
+                                        stack-label="Termíno do Evento"
+                                        type="datetime"
+                                        format="DD/MM/YYYY HH:mm"
+                                        ok-label="OK"
+                                        clear-label="Limpar"
+                                        cancel-label="Cancelar"
+                                        :day-names="['Dom','Seg', 'Ter','Qua','Qui','Sex','Sáb']"
+                                        :month-names="['Janeiro', 'Fevereiro','Março','Abril','Maio','Junho',
+                'Julho','Agosto','Setembro','Outubro','Novembro','Dezembro']"
+                                />
                             </div>
                             <div class="col-xs-12 col-sm-5">
                                 <q-field
@@ -42,7 +77,7 @@
                                     <q-input
                                             type="number"
                                             v-model="form.quantityEmployee"
-                                            min="0"
+                                            :min="0"
                                             float-label="Quantidade de Seguranças"
                                             class="no-margin"
                                             @blur="$v.form.quantityEmployee.$touch"
@@ -52,7 +87,65 @@
                         </div>
                     </div>
                 </q-step>
-                <q-stepper-navigation>
+                <q-step name="third" title="Local do Evento">
+                    <div>
+                        <div class="row xs-gutter">
+                            <div class="col-xs-12 col-sm-12">
+                                <q-field
+                                        :error="$v.form.local.$error"
+                                        error-label="Por favor, preencha este campo">
+                                    <q-input
+                                            v-model="form.local"
+                                            :min="0"
+                                            float-label="Local"
+                                            class="no-margin"
+                                            @blur="$v.form.local.$touch"
+                                    />
+                                </q-field>
+                            </div>
+                            <div class="col-xs-12 col-sm-7">
+                                <q-field
+                                        :error="$v.form.zip_code.$error"
+                                        error-label="Por favor, preencha este campo">
+                                    <q-input
+                                            v-on:keyup="cepFormat"
+                                            max-length="9"
+                                            v-model="form.zip_code"
+                                            float-label="CEP"
+                                            class="no-margin"
+                                            @blur="$v.form.zip_code.$touch"
+                                    />
+                                </q-field>
+                            </div>
+                            <div class="col-xs-12 col-sm-8">
+                                <q-field
+                                        :error="$v.form.city.$error"
+                                        error-label="Por favor, preencha este campo">
+                                    <q-input
+                                            v-model="form.city"
+                                            :min="0"
+                                            float-label="Cidade"
+                                            class="no-margin"
+                                            @blur="$v.form.city.$touch"
+                                    />
+                                </q-field>
+                            </div>
+                            <div class="col-xs-12 col-sm-4">
+                                <q-field
+                                        :error="$v.form.state.$error"
+                                        error-label="Por favor, preencha este campo">
+                                    <q-select
+                                            v-model="form.state"
+                                            float-label="Estado"
+                                            @blur="$v.form.state.$touch"
+                                            :options="states"
+                                    />
+                                </q-field>
+                            </div>
+                        </div>
+                    </div>
+                </q-step>
+                <q-stepper-navigation class="on-right ">
                     <q-btn
                             v-if="step !== 'first'"
                             color="primary"
@@ -61,11 +154,14 @@
                     >
                         Voltar
                     </q-btn>
-                    <template v-if="step === 'second'">
-                        <q-btn color="primary" :disabled="$v.form.$invalid" @click="submit"> Cadastrar </q-btn>
-                    </template>
-                    <template v-else>
+                    <template v-if="step === 'first'">
                         <q-btn color="primary" :disabled="$v.terms.$invalid" @click="$refs.stepper.next()" >Avançar</q-btn>
+                    </template>
+                    <template v-if="step === 'second'">
+                        <q-btn color="primary" @click="$refs.stepper.next()"> Avançar </q-btn>
+                    </template>
+                    <template v-if="step === 'third'">
+                        <q-btn color="primary" :disabled="$v.form.$invalid" @click="" >Cadastrar</q-btn>
                     </template>
                 </q-stepper-navigation>
             </q-stepper>
@@ -74,9 +170,14 @@
 </template>
 
 <script>
+  import PhoneFormatter from '../../../services/my-formatter'
+  import axios from 'axios'
+  import statesMixin from '../../../mixins/states.mixin'
   import { required } from 'vuelidate/lib/validators'
   import { CNPJ, CPF } from 'cpf_cnpj'
   import {
+    QDatetime,
+    QDatetimeRange,
     QInput,
     QSelect,
     QBtn,
@@ -107,8 +208,13 @@
     QIcon
   } from 'quasar'
   export default {
+    mixins: [statesMixin],
     data () {
       return {
+        range3: {
+          from: null,
+          to: null
+        },
         step: 'first',
         error: false,
         terms: '',
@@ -116,7 +222,14 @@
         selectedClient: { address: {} },
         form: {
           name: '',
-          quantityEmployee: ''
+          quantityEmployee: '',
+          local: '',
+          zip_code: '',
+          city: '',
+          state: '',
+          startedDate: '',
+          terminatedDate: '',
+          observations: ''
         }
       }
     },
@@ -140,10 +253,29 @@
       terms: { required },
       form: {
         name: { required },
-        quantityEmployee: { required }
+        quantityEmployee: { required },
+        local: { required },
+        zip_code: { required },
+        city: { required },
+        state: { required },
+        startedDate: { required },
+        terminatedDate: { required },
+        observations: {}
       }
     },
     methods: {
+      cepFormat () {
+        if (this.form.zip_code.length === 8) {
+          this.form.zip_code = PhoneFormatter.modules.cepFormatter(this.form.zip_code)
+          if (/^[0-9]{5}-[0-9]{3}$/.test(this.form.zip_code)) {
+            axios.get('https://viacep.com.br/ws/' + this.form.zip_code + '/json/')
+              .then((response) => {
+                this.form.city = response.data.localidade
+                this.form.state = response.data.uf
+              })
+          }
+        }
+      },
       documentFormat (value) {
         if (value.length === 11) {
           return CPF.format(value)
@@ -162,6 +294,7 @@
       },
       selected (client) {
         this.selectedClient = client.allData
+        this.$refs.stepper.next()
       },
       getClients () {
         this.$http.get('http://127.0.0.1:8000/api/clients')
@@ -174,6 +307,8 @@
       this.getClients()
     },
     components: {
+      QDatetimeRange,
+      QDatetime,
       QSelect,
       Loading,
       QAlert,

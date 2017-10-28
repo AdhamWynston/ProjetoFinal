@@ -54,7 +54,7 @@
               </q-field>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">
-              <q-field :error="error" error-label="Este E-mail já existe ou está inválido">
+              <q-field :error="error" :error-label="emailError">
                 <q-input
                         v-model="client.email"
                         type="email"

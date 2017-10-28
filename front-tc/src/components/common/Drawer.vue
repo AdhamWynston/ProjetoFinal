@@ -5,23 +5,23 @@
             <q-list-header>Ações no sistema</q-list-header>
             <q-side-link item to="/home">
                 <q-item-side icon="home" />
-                <q-item-main label="Home" sublabel="General Information" />
+                <q-item-main label="Início" />
             </q-side-link>
             <q-side-link item to="/events">
                 <q-item-side icon="ion-calendar" />
-                <q-item-main label="Eventos" sublabel="Modúlo Eventos" />
+                <q-item-main label="Eventos" />
             </q-side-link>
             <q-side-link item to="/clients">
                 <q-item-side icon="ion-ios-people" />
-                <q-item-main label="Clientes" sublabel="Modúlo Clientes" />
+                <q-item-main label="Clientes" />
             </q-side-link>
             <q-side-link item to="/employees">
                 <q-item-side icon="supervisor_account" />
-                <q-item-main label="Funcionários" sublabel="Modúlo Funcionários" />
+                <q-item-main label="Funcionários" />
             </q-side-link>
             <q-side-link item to="/admin/users">
-                <q-item-side icon="perm_identity" />
-                <q-item-main label="Usuários" sublabel="Modúlo Usuários" />
+                <q-item-side icon="computer" />
+                <q-item-main label="Usuários" />
             </q-side-link>
             <q-item link @click="logout()">
                 <q-item-side  icon="ion-android-exit" />

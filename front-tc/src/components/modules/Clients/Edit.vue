@@ -58,7 +58,7 @@
           </div>
           <div class="row sm-gutter">
             <div class="col-xs-12 col-sm-12">
-              <q-field :error="error" error-label="Por favor, preencha com E-mail válido">
+              <q-field :error="error" :error-label="emailError">
                 <q-input
                         v-model="client.email"
                         type="email"

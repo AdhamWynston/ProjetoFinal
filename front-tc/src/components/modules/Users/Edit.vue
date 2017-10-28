@@ -1,40 +1,44 @@
 <template>
   <div class="layout-padding row justify-center">
-    <div class="row">
-      <q-card style="width: 700px">
-        <q-card-title>
-          <h4>
-            Cadastrar Usuário
-          </h4>
-        </q-card-title>
-        <q-card-main>
-          <div class="row sm-gutter">
-            <div class="col-xs-12 col-sm-8">
+
+    <q-card style="width: 700px">
+      <q-card-title>
+        <h4>
+          Cadastrar Usuário
+        </h4>
+      </q-card-title>
+      <q-card-main>
+        <div>
+          <div class="row xs-gutter">
+            <div class="col-xs-12 col-sm-12">
               <q-field
                       :error="$v.user.name.$error"
-                      error-label="Por favor, preencha este campo">
+                      :error-label="nameError"
+              >
                 <q-input
                         v-model="user.name"
-                        stack-label="Nome Completo"
-                        @blur="$v.user.name.$touch"
-                />
+                        class="no-margin"
+                        float-label="Nome Completo"
+                        @blur="$v.user.name.$touch"/>
               </q-field>
             </div>
-            <div class="col-xs-12 col-sm-8">
+            <div class="col-xs-12 col-sm-12">
               <q-field
                       :error="$v.user.email.$error"
-                      error-label="Por favor, preencha este campo">
+                      :error-label="emailError"
+              >
                 <q-input
                         v-model="user.email"
-                        stack-label="E-mail"
-                        @blur="$v.user.email.$touch"
-                />
+                        class="no-margin"
+                        float-label="E-mail"
+                        @blur="$v.user.email.$touch"/>
               </q-field>
             </div>
             <div class="col-xs-12 col-sm-6">
               <q-field
                       :error="$v.user.role.$error"
-                      error-label="Por favor, preencha este campo">
+                      error-label="Preencha corretamente este campo!"
+              >
                 <q-select
                         v-model="user.role"
                         float-label="Permissão"
@@ -44,12 +48,12 @@
               </q-field>
             </div>
           </div>
-          <br>
-          <q-btn @click="backCreate"flat>Voltar</q-btn>
-          <q-btn color="green" :disabled="$v.user.$invalid" @click="save">Salvar</q-btn>
-        </q-card-main>
-      </q-card>
-    </div>
+        </div>
+        <br>
+        <q-btn @click="backCreate"flat>Voltar</q-btn>
+        <q-btn color="primary" :disabled="$v.user.$invalid" @click="save">Salvar</q-btn>
+      </q-card-main>
+    </q-card>
   </div>
 </template>
 
@@ -90,7 +94,23 @@
     validations: {
       user: {
         name: { required },
-        email: { email, required },
+        email: { email,
+          required,
+          async isUnique (value) {
+            let id
+            if (value === '') {
+              return true
+            }
+            if (this.$route.params.id) {
+              id = this.$route.params.id
+            }
+            else {
+              id = 0
+            }
+            const response = await fetch(`http://127.0.0.1:8000/api/users/${value}/` + id)
+            return Boolean(await response.json())
+          }
+        },
         role: { required }
       }
     },
@@ -139,12 +159,10 @@
         return this.$store.state.users.one || {}
       },
       nameError () {
-        if (!this.$v.employee.name.required) {
-          console.log(this.$v.employee.name.required)
+        if (!this.$v.user.name.required) {
           return 'Este campo é obrigatório!'
         }
-        else if (!this.$v.employee.name.minLength) {
-          console.log(this.$v.employee.name.minLength)
+        else if (!this.$v.user.name.minLength) {
           return 'Preencha com nome válido!'
         }
         else {

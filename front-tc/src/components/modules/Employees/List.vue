@@ -18,7 +18,7 @@
         <q-btn class="primary clear" @click="goTo(selection)"><q-icon name="remove_red_eye"></q-icon>Visualizar Registro</q-btn>
       </template>
     </q-data-table>
-    <q-fixed-position corner="bottom-left" :offset="[16, 16]">
+    <q-fixed-position corner="bottom-left" :offset="[10, 10]">
       <q-btn  @click="goCreate()" round icon="ion-plus-round" color="primary">
       </q-btn>
     </q-fixed-position>

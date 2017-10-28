@@ -45,9 +45,41 @@ export default {
   },
   validations: {
     client: {
-      email: { required,
-        email },
-      name: { required, minLength: minLength(3) },
+      email: {
+        required,
+        email,
+        async isUnique (value) {
+          let id
+          if (value === '') {
+            return true
+          }
+          if (this.$route.params.id) {
+            id = this.$route.params.id
+          }
+          else {
+            id = 0
+          }
+          const response = await fetch(`http://127.0.0.1:8000/api/clients/${value}/` + id)
+          return Boolean(await response.json())
+        }
+      },
+      name: { required,
+        minLength: minLength(3),
+        async isUnique (value) {
+          let id
+          if (value === '') {
+            return true
+          }
+          if (this.$route.params.id) {
+            id = this.$route.params.id
+          }
+          else {
+            id = 0
+          }
+          const response = await fetch(`http://127.0.0.1:8000/api/clients/${value}/` + id)
+          return Boolean(await response.json())
+        }
+      },
       document: { required,
         numeric,
         minLength: minLength(11)
