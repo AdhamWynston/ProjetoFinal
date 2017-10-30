@@ -1,4 +1,4 @@
-import { required, email, numeric, minLength } from 'vuelidate/lib/validators'
+import { required, alpha, email, numeric, minLength } from 'vuelidate/lib/validators'
 export default {
   computed: {
     nameError () {
@@ -64,6 +64,7 @@ export default {
         }
       },
       name: { required,
+        alpha,
         minLength: minLength(3),
         async isUnique (value) {
           let id
@@ -93,7 +94,7 @@ export default {
       street: { required },
       neighborhood: { required },
       number: { required },
-      complement: { required }
+      complement: {}
     }
   }
 }

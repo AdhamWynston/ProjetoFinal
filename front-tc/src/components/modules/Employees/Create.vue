@@ -185,7 +185,7 @@
           <q-btn color="primary" :disabled="$v.employee.$invalid" @click="submit"> Cadastrar </q-btn>
         </template>
         <template v-else>
-          <q-btn color="primary" @click="$refs.stepper.next()" >Avançar</q-btn>
+          <q-btn color="primary"  @click="$refs.stepper.next()" >Avançar</q-btn>
         </template>
       </q-stepper-navigation>
     </q-stepper>

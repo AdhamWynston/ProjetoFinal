@@ -39,26 +39,35 @@
                                 </q-field>
                             </div>
                             <div class="col-xs-12 col-sm-6">
+                                <q-field
+                                        :error="$v.form.startDate.$error"
+                                        :error-label="startError">
                                 <q-datetime
                                         id="started"
-                                        v-model="form.startedDate"
+                                        v-model="form.startDate"
                                         stack-label="Início do Evento"
                                         type="datetime"
                                         format24h
                                         format="DD/MM/YYYY HH:mm"
                                         ok-label="OK"
+                                        @blur="$v.form.startDate.$touch"
                                         clear-label="Limpar"
                                         cancel-label="Cancelar"
                                         :day-names="['Dom','Seg', 'Ter','Qua','Qui','Sex','Sáb']"
                                         :month-names="['Janeiro', 'Fevereiro','Março','Abril','Maio','Junho',
                 'Julho','Agosto','Setembro','Outubro','Novembro','Dezembro']"
                                 />
+                                </q-field>
                             </div>
                             <div class="col-xs-12 col-sm-6">
+                                <q-field
+                                        :error="$v.form.endDate.$error"
+                                        :error-label="endError">
                                 <q-datetime
                                         id="terminated"
                                         format24h
-                                        v-model="form.terminatedDate"
+                                        v-model="form.endDate"
+                                        @blur="$v.form.endDate.$touch"
                                         stack-label="Termíno do Evento"
                                         type="datetime"
                                         format="DD/MM/YYYY HH:mm"
@@ -69,18 +78,19 @@
                                         :month-names="['Janeiro', 'Fevereiro','Março','Abril','Maio','Junho',
                 'Julho','Agosto','Setembro','Outubro','Novembro','Dezembro']"
                                 />
+                                </q-field>
                             </div>
                             <div class="col-xs-12 col-sm-5">
                                 <q-field
-                                        :error="$v.form.quantityEmployee.$error"
-                                        error-label="Por favor, preencha este campo">
+                                        :error="$v.form.quantityEmployees.$error"
+                                        :error-label="quantityEmployeesError">
                                     <q-input
                                             type="number"
-                                            v-model="form.quantityEmployee"
+                                            v-model="form.quantityEmployees"
                                             :min="0"
                                             float-label="Quantidade de Seguranças"
                                             class="no-margin"
-                                            @blur="$v.form.quantityEmployee.$touch"
+                                            @blur="$v.form.quantityEmployees.$touch"
                                     />
                                 </q-field>
                             </div>
@@ -158,7 +168,7 @@
                         <q-btn color="primary" :disabled="$v.terms.$invalid" @click="$refs.stepper.next()" >Avançar</q-btn>
                     </template>
                     <template v-if="step === 'second'">
-                        <q-btn color="primary" @click="$refs.stepper.next()"> Avançar </q-btn>
+                        <q-btn color="primary" :disabled="$v.form.quantityEmployees.$invalid" @click="$refs.stepper.next()"> Avançar </q-btn>
                     </template>
                     <template v-if="step === 'third'">
                         <q-btn color="primary" :disabled="$v.form.$invalid" @click="" >Cadastrar</q-btn>
@@ -207,6 +217,7 @@
     QParallax,
     QIcon
   } from 'quasar'
+  import moment from 'moment'
   export default {
     mixins: [statesMixin],
     data () {
@@ -215,6 +226,7 @@
           from: null,
           to: null
         },
+        resp: '',
         step: 'first',
         error: false,
         terms: '',
@@ -222,13 +234,13 @@
         selectedClient: { address: {} },
         form: {
           name: '',
-          quantityEmployee: '',
+          quantityEmployees: '',
           local: '',
           zip_code: '',
           city: '',
           state: '',
-          startedDate: '',
-          terminatedDate: '',
+          startDate: '',
+          endDate: '',
           observations: ''
         }
       }
@@ -236,6 +248,36 @@
     computed: {
       cList () {
         return this.$store.state.clients.list
+      },
+      quantityEmployeesError () {
+        if (!this.$v.form.quantityEmployees.required) {
+          return 'Este campo é obrigatório!'
+        }
+        else if (!this.$v.form.quantityEmployees.checkDate) {
+          return 'Indisponibilidade para esta data!'
+        }
+        else {
+          return null
+        }
+      },
+      endError () {
+        if (!this.$v.form.endDate.required) {
+          return 'Este campo é obrigatório!'
+        }
+        else if (!this.$v.form.endDate.isAfter) {
+          return 'Data inválida'
+        }
+        else {
+          return null
+        }
+      },
+      startError () {
+        if (!this.$v.form.startDate.required) {
+          return 'Este campo é obrigatório!'
+        }
+        else {
+          return null
+        }
       },
       parseClients () {
         return this.clients.map(client => {
@@ -253,17 +295,50 @@
       terms: { required },
       form: {
         name: { required },
-        quantityEmployee: { required },
+        quantityEmployees: {
+          required,
+          async checkDate (value) {
+            if (value === '') return true
+            let data = {
+              quantityEmployees: this.form.quantityEmployees,
+              startDate: Date.parse(this.form.startDate),
+              endDate: this.form.endDate
+            }
+            this.$http.post('http://127.0.0.1:8000/api/events/check', data)
+              .then((response) => {
+                this.resp = response.body
+              })
+            return this.resp
+          }
+        },
         local: { required },
         zip_code: { required },
         city: { required },
         state: { required },
-        startedDate: { required },
-        terminatedDate: { required },
+        startDate: {
+          required
+        },
+        endDate: {
+          required,
+          isAfter (date) {
+            return moment(date).isAfter(this.form.startDate)
+          }
+        },
         observations: {}
       }
     },
     methods: {
+      teste () {
+        let data = {
+          quantityEmployees: this.form.quantityEmployees,
+          startDate: Date.parse(this.form.startDate),
+          endDate: this.form.endDate
+        }
+        this.$http.post('http://127.0.0.1:8000/api/events/check', data)
+          .then((response) => {
+            console.log(response.data)
+          })
+      },
       cepFormat () {
         if (this.form.zip_code.length === 8) {
           this.form.zip_code = PhoneFormatter.modules.cepFormatter(this.form.zip_code)
