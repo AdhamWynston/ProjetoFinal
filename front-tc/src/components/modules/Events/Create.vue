@@ -2,7 +2,7 @@
     <div class="layout-padding row justify-center">
         <div style="width: 600px; max-width: 90vw;">
             <q-stepper v-model="step" flat ref="stepper" vertical>
-                <q-step name="first" title="Cliente" color="light">
+                <q-step name="first" title="Selecionar o Cliente" color="light">
                     <div>
                         <div class="row sm-gutter">
                             <div class="col-xs-12 col-sm-12 col-md-12">
@@ -13,6 +13,9 @@
                                             :max-results="4"
                                             @selected="selected"
                                     />
+                                    <q-tooltip>
+                                        Digite o nome do cliente
+                                    </q-tooltip>
                                 </q-search>
                             </div>
                             </div>
@@ -59,41 +62,45 @@
                                 />
                                 </q-field>
                             </div>
-                            <div class="col-xs-12 col-sm-6">
-                                <q-field
-                                        :error="$v.form.endDate.$error"
-                                        :error-label="endError">
-                                <q-datetime
-                                        id="terminated"
-                                        format24h
-                                        v-model="form.endDate"
-                                        @blur="$v.form.endDate.$touch"
-                                        stack-label="Termíno do Evento"
-                                        type="datetime"
-                                        format="DD/MM/YYYY HH:mm"
-                                        ok-label="OK"
-                                        clear-label="Limpar"
-                                        cancel-label="Cancelar"
-                                        :day-names="['Dom','Seg', 'Ter','Qua','Qui','Sex','Sáb']"
-                                        :month-names="['Janeiro', 'Fevereiro','Março','Abril','Maio','Junho',
+                            <template v-if="this.form.startDate !== ''">
+                                <div class="col-xs-12 col-sm-6">
+                                    <q-field
+                                            :error="$v.form.endDate.$error"
+                                            :error-label="endError">
+                                        <q-datetime
+                                                id="terminated"
+                                                format24h
+                                                v-model="form.endDate"
+                                                @blur="$v.form.endDate.$touch"
+                                                stack-label="Termíno do Evento"
+                                                type="datetime"
+                                                format="DD/MM/YYYY HH:mm"
+                                                ok-label="OK"
+                                                clear-label="Limpar"
+                                                cancel-label="Cancelar"
+                                                :day-names="['Dom','Seg', 'Ter','Qua','Qui','Sex','Sáb']"
+                                                :month-names="['Janeiro', 'Fevereiro','Março','Abril','Maio','Junho',
                 'Julho','Agosto','Setembro','Outubro','Novembro','Dezembro']"
-                                />
-                                </q-field>
-                            </div>
-                            <div class="col-xs-12 col-sm-5">
-                                <q-field
-                                        :error="$v.form.quantityEmployees.$error"
-                                        :error-label="quantityEmployeesError">
-                                    <q-input
-                                            type="number"
-                                            v-model="form.quantityEmployees"
-                                            :min="0"
-                                            float-label="Quantidade de Seguranças"
-                                            class="no-margin"
-                                            @blur="$v.form.quantityEmployees.$touch"
-                                    />
-                                </q-field>
-                            </div>
+                                        />
+                                    </q-field>
+                                </div>
+                            </template>
+                            <template v-if="this.form.endDate !== ''">
+                                <div class="col-xs-12 col-sm-5">
+                                    <q-field
+                                            :error="$v.form.quantityEmployees.$error"
+                                            :error-label="quantityEmployeesError">
+                                        <q-input
+                                                type="number"
+                                                v-model="form.quantityEmployees"
+                                                :min="0"
+                                                float-label="Quantidade de Seguranças"
+                                                class="no-margin"
+                                                @blur="$v.form.quantityEmployees.$touch"
+                                        />
+                                    </q-field>
+                                </div>
+                            </template>
                         </div>
                     </div>
                 </q-step>
@@ -164,9 +171,9 @@
                     >
                         Voltar
                     </q-btn>
-                    <template v-if="step === 'first'">
-                        <q-btn color="primary" :disabled="$v.terms.$invalid" @click="$refs.stepper.next()" >Avançar</q-btn>
-                    </template>
+                    <!--<template v-if="step === 'first'">-->
+                        <!--<q-btn color="primary" :disabled="$v.terms.$invalid" @click="$refs.stepper.next()" >Avançar</q-btn>-->
+                    <!--</template>-->
                     <template v-if="step === 'second'">
                         <q-btn color="primary" :disabled="$v.form.quantityEmployees.$invalid" @click="$refs.stepper.next()"> Avançar </q-btn>
                     </template>
@@ -186,6 +193,7 @@
   import { required } from 'vuelidate/lib/validators'
   import { CNPJ, CPF } from 'cpf_cnpj'
   import {
+    QTooltip,
     QDatetime,
     QDatetimeRange,
     QInput,
@@ -226,6 +234,7 @@
           from: null,
           to: null
         },
+        available: '',
         resp: '',
         step: 'first',
         error: false,
@@ -254,7 +263,7 @@
           return 'Este campo é obrigatório!'
         }
         else if (!this.$v.form.quantityEmployees.checkDate) {
-          return 'Indisponibilidade para esta data!'
+          return `Só existem ${this.available} funcionários disponíveis para essa data!`
         }
         else {
           return null
@@ -306,7 +315,9 @@
             }
             this.$http.post('http://127.0.0.1:8000/api/events/check', data)
               .then((response) => {
-                this.resp = response.body
+                this.resp = response.body.resp
+                this.available = response.body.quantity
+                console.log(this.available)
               })
             return this.resp
           }
@@ -382,6 +393,7 @@
       this.getClients()
     },
     components: {
+      QTooltip,
       QDatetimeRange,
       QDatetime,
       QSelect,
