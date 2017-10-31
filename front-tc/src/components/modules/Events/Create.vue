@@ -101,6 +101,20 @@
                                     </q-field>
                                 </div>
                             </template>
+                            <div class="col-xs-12 col-sm-12">
+                                <q-field
+                                        :error="$v.form.observations.$error"
+                                        error-label="Houve um erro neste campo">
+                                    <q-input
+                                            type="text"
+                                            v-model="form.observations"
+                                            :min="0"
+                                            float-label="Observações"
+                                            class="no-margin"
+                                            @blur="$v.form.observations.$touch"
+                                    />
+                                </q-field>
+                            </div>
                         </div>
                     </div>
                 </q-step>
@@ -178,7 +192,7 @@
                         <q-btn color="primary" :disabled="$v.form.quantityEmployees.$invalid" @click="$refs.stepper.next()"> Avançar </q-btn>
                     </template>
                     <template v-if="step === 'third'">
-                        <q-btn color="primary" :disabled="$v.form.$invalid" @click="" >Cadastrar</q-btn>
+                        <q-btn color="primary" :disabled="$v.form.$invalid" @click="submit" >Cadastrar</q-btn>
                     </template>
                 </q-stepper-navigation>
             </q-stepper>
@@ -310,14 +324,13 @@
             if (value === '') return true
             let data = {
               quantityEmployees: this.form.quantityEmployees,
-              startDate: Date.parse(this.form.startDate),
+              startDate: this.form.startDate,
               endDate: this.form.endDate
             }
             this.$http.post('http://127.0.0.1:8000/api/events/check', data)
               .then((response) => {
-                this.resp = response.body.resp
                 this.available = response.body.quantity
-                console.log(this.available)
+                this.resp = response.body.resp
               })
             return this.resp
           }
@@ -339,16 +352,20 @@
       }
     },
     methods: {
+      closeLoading () {
+        setTimeout(Loading.hide, 600)
+      },
       teste () {
         let data = {
           quantityEmployees: this.form.quantityEmployees,
-          startDate: Date.parse(this.form.startDate),
+          startDate: this.form.startDate,
           endDate: this.form.endDate
         }
         this.$http.post('http://127.0.0.1:8000/api/events/check', data)
           .then((response) => {
             console.log(response.data)
           })
+        console.log(data)
       },
       cepFormat () {
         if (this.form.zip_code.length === 8) {
@@ -371,7 +388,41 @@
         }
       },
       submit () {
-        console.log('submit')
+        let data = {
+          client_id: this.selectedClient.id,
+          name: this.form.name,
+          local: this.form.local,
+          zip_code: this.form.zip_code,
+          city: this.form.city,
+          state: this.form.state,
+          observations: this.form.observations,
+          quantityEmployees: this.form.quantityEmployees,
+          startDate: moment(this.form.startDate).format('YYYY-MM-DD HH:mm:ss'),
+          endDate: moment(this.form.endDate).format('YYYY-MM-DD HH:mm:ss')
+        }
+        if (this.$v.form.$invalid === false) {
+          this.$store.dispatch('eventInsert', data)
+            .then((response) => {
+              console.log(response)
+              Loading.show()
+              this.$router.push('/events')
+              this.closeLoading()
+              Toast.create.positive({
+                html: 'Evento cadastrado com sucesso!',
+                icon: 'done'
+              })
+            })
+            .catch((response) => {
+              console.log(response)
+              Toast.create.negative({
+                html: 'Não pode ser cadastrado',
+                icon: 'cancel'
+              })
+            })
+        }
+        else {
+          Toast.create.negative('Verifique os dados')
+        }
       },
       search (terms, done) {
         setTimeout(() => {
