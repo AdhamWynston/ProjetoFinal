@@ -22,9 +22,6 @@
             <template slot="col-endDate" scope="cell">
                 <span>{{cell.row.endDate | moment }}</span>
             </template>
-            <template slot="col-actions" scope="cell">
-                <q-btn color="primary" round @click="goManage(cell.row.id)" flat small><q-tooltip>Gerenciar Evento</q-tooltip><q-icon name="ion-gear-a"></q-icon></q-btn>
-            </template>
             <template slot="selection" scope="selection">
                 <q-btn class="primary clear" @click="goTo(selection)"><q-icon name="remove_red_eye"></q-icon>Visualizar Registro</q-btn>
             </template>

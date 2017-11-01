@@ -4,7 +4,7 @@
             <q-collapsible
                     icon="info_outline"
                     label="Dados do Evento"
-                    style="max-width: 600px; margin-bottom: 25px"
+                    style="max-width: 800px; margin-bottom: 25px"
                     class="shadow-2"
             >
                 <div>
@@ -54,16 +54,20 @@
             </q-collapsible>
             <template v-show="">
                 <q-data-table
-                        :data="employees.data || []"
+                        :data="this.employees || []"
                         :columns="columns"
                         :config="config"
                         @refresh="refresh"
+                        @selection="check"
                 >
                     <template slot="col-created_at" scope="cell">
                         <span>{{cell.row.created_at | moment }}</span>
                     </template>
                     <template slot="selection" scope="selection">
-                        <q-btn class="primary clear" @click="goTo(selection)"><q-icon name="remove_red_eye"></q-icon>Visualizar Registro</q-btn>
+                        <span>ava</span>
+                    </template>
+                    <template slot="selection" scope="selection">
+                        <q-btn class="primary clear" @click="goTo(selection)"><q-icon name="remove_red_eye"></q-icon>Salvar registros</q-btn>
                     </template>
                 </q-data-table>
             </template>
@@ -73,7 +77,7 @@
 
 <script>
     import moment from 'moment'
-    import dataTableEventMixin from '../../../mixins/dataTableEvent.mixin'
+    import dataTableEventMixin from '../../../mixins/dataTableManageEvent'
     import { CNPJ, CPF } from 'cpf_cnpj'
     import {
       QDataTable,
@@ -106,6 +110,7 @@
       QCardSeparator,
       QCardMain,
       QToolbar,
+      clone,
       QToolbarTitle,
       QSearch,
       QTabs,
@@ -119,11 +124,39 @@
       mixins: [dataTableEventMixin],
       data () {
         return {
-          client: {}
+          client: {},
+          employees: [],
+          check_row: false,
+          checked: 0
+        }
+      },
+      methods: {
+        goTo (value) {
+          console.log(value)
+        },
+        check (value) {
+          this.checked = this.checked + 1
+          if (value === 2) {
+            console.log('teste')
+          }
+          else if (value > 2) {
+            return false
+          }
+        },
+        refresh (done) {
+          this.timeout = setTimeout(() => {
+            done()
+          }, 5000)
+        },
+        getEmployees () {
+          this.$http.get('http://127.0.0.1:8000/api/employees?where[status]=1')
+            .then((response) => {
+              this.employees = response.data
+            })
         }
       },
       computed: {
-        employees () {
+        employeesList () {
           return this.$store.state.employees.list
         },
         event () {
@@ -131,6 +164,7 @@
         }
       },
       mounted () {
+        this.getEmployees()
         this.$store.dispatch('eventsGet', this.$route.params.id)
       },
       filters: {
@@ -142,6 +176,33 @@
             return CPF.format(value)
           }
           return CNPJ.format(value)
+        }
+      },
+      watch: {
+        pagination (value) {
+          if (!value) {
+            this.oldPagination = clone(this.config.pagination)
+            this.config.pagination = false
+            return
+          }
+          this.config.pagination = this.oldPagination
+        },
+        rowHeight (value) {
+          this.config.rowHeight = value + 'px'
+        },
+        bodyHeight (value) {
+          let style = {}
+          if (this.bodyHeightProp !== 'auto') {
+            style[this.bodyHeightProp] = value + 'px'
+          }
+          this.config.bodyStyle = style
+        },
+        bodyHeightProp (value) {
+          let style = {}
+          if (value !== 'auto') {
+            style[value] = this.bodyHeight + 'px'
+          }
+          this.config.bodyStyle = style
         }
       },
       components: {
