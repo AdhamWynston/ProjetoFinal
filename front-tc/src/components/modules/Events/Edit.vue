@@ -426,7 +426,7 @@
         this.$refs.stepper.next()
       },
       getClients () {
-        this.$http.get('http://127.0.0.1:8000/api/clients')
+        this.$http.get('http://127.0.0.1:8000/api/clients?where[status]=1')
           .then(response => {
             this.clients = response.data
           })

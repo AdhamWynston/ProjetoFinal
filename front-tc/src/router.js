@@ -33,6 +33,7 @@ export default new VueRouter({
         { path: '/events/create', component: load('modules/Events/Create'), name: 'events.create', meta: { auth: true } },
         { path: '/events/:id', component: load('modules/Events/View'), name: 'events.view' },
         { path: '/events/:id/edit', component: load('modules/Events/Edit'), name: 'events.edit', meta: { auth: true } },
+        { path: '/events/:id/manage', component: load('modules/Events/Manage'), name: 'events.manage', meta: { auth: true } },
         // CLIENT
         { path: '/clients', component: load('modules/Clients/List'), name: 'clients.list', meta: { auth: true } },
         { path: '/clients/create', component: load('modules/Clients/Create'), name: 'clients.create', meta: { auth: true } },

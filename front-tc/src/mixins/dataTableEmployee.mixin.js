@@ -1,4 +1,4 @@
-import {CPF, CNPJ} from 'cpf_cnpj'
+import {CPF} from 'cpf_cnpj'
 export default {
   data () {
     return {
@@ -39,6 +39,7 @@ export default {
         {
           label: 'Nome',
           field: 'name',
+          type: 'string',
           width: '100px',
           sort: true,
           filter: true
@@ -51,10 +52,7 @@ export default {
           filter: true,
           format (value) {
             value = CPF.strip(value)
-            if (value.length === 11) {
-              return CPF.format(value)
-            }
-            return CNPJ.format(value)
+            return CPF.format(value)
           }
         },
         {
@@ -79,6 +77,7 @@ export default {
         {
           label: 'Cadastrado em',
           field: 'created_at',
+          type: 'date',
           width: '50px',
           sort: true,
           filter: true

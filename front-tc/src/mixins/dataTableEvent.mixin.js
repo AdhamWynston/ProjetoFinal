@@ -1,8 +1,9 @@
+
 export default {
   data () {
     return {
       config: {
-        title: 'Listagem dos Eventos',
+        title: 'Listagem dos Funcionários',
         columnPicker: true,
         leftStickyColumns: 0,
         rightStickyColumns: 2,
@@ -11,7 +12,7 @@ export default {
           maxHeight: '500px'
         },
         selection: 'single',
-        rowHeight: '40px',
+        rowHeight: '60px',
         responsive: true,
         pagination: {
           rowsPerPage: 5,
@@ -38,7 +39,8 @@ export default {
         {
           label: 'Nome',
           field: 'name',
-          width: '120px',
+          type: 'string',
+          width: '100px',
           sort: true,
           filter: true
         },
@@ -46,15 +48,26 @@ export default {
           label: 'Início',
           field: 'startDate',
           width: '60px',
+          type: 'date',
           sort: true,
           filter: true
         },
         {
           label: 'Término',
           field: 'endDate',
+          type: 'date',
           width: '60px',
           sort: true,
           filter: true
+        },
+        {
+          label: 'Duração',
+          field: 'duration',
+          width: '40px',
+          sort: true,
+          format (value) {
+            return value + ' Horas'
+          }
         },
         {
           label: 'Status',
@@ -72,12 +85,13 @@ export default {
             }
           },
           width: '50px'
+        },
+        {
+          label: 'Ações',
+          field: 'actions',
+          width: '30px'
         }
-      ],
-      pagination: true,
-      rowHeight: 50,
-      bodyHeightProp: 'maxHeight',
-      bodyHeight: 500
+      ]
     }
   }
 }

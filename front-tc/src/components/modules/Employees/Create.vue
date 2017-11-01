@@ -22,9 +22,10 @@
             </div>
             <div class="col-xs-12 col-sm-5 col-md-5">
               <q-field
+                      :error="$v.employee.document.$error"
+                      :error-label="documentError"
                     >
                   <q-input
-                          :error="$v.employee.document.$error"
                           v-model="documentComputed"
                           max-length="11"
                           float-label="Nº Documento(CPF)"
@@ -243,20 +244,7 @@
     computed: {
       documentComputed: {
         get: function () {
-          if (this.employee && this.employee.document) {
-            if (this.employee.document.length === 11) {
-              if (CPF.isValid(this.employee.document)) {
-                return CPF.format(this.employee.document)
-              }
-              else {
-                this.employee.document = ''
-                return Toast.create.negative('Informe um CPF válido')
-              }
-            }
-          }
-          else {
-            return ''
-          }
+          return CPF.format(this.employee.document)
         },
         set: function (newValue) {
           this.employee.document = CPF.strip(newValue)

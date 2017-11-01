@@ -85,6 +85,11 @@
                                     </q-field>
                                 </div>
                             </template>
+                            <template v-if="this.form.startDate !== '' && this.form.endDate !== ''">
+                                <div class="col-xs-12 col-sm-12">
+                                    Duração: {{ calculeDuration }}
+                                </div>
+                            </template>
                             <template v-if="this.form.endDate !== ''">
                                 <div class="col-xs-12 col-sm-5">
                                     <q-field
@@ -250,6 +255,7 @@
         },
         available: '',
         resp: '',
+        durations: '',
         step: 'first',
         error: false,
         terms: '',
@@ -269,6 +275,15 @@
       }
     },
     computed: {
+      calculeDuration () {
+        const date1 = moment(this.form.startDate)
+        const date2 = moment(this.form.endDate)
+        const differenceInMs = date2.diff(date1)
+        const duration = moment.duration(differenceInMs)
+        const differenceInHours = duration.asHours()
+        this.duration = differenceInHours
+        return differenceInHours + ' Horas'
+      },
       cList () {
         return this.$store.state.clients.list
       },
@@ -324,8 +339,8 @@
             if (value === '') return true
             let data = {
               quantityEmployees: this.form.quantityEmployees,
-              startDate: this.form.startDate,
-              endDate: this.form.endDate
+              startDate: moment(this.form.startDate).format('YYYY-MM-DD HH:mm:ss'),
+              endDate: moment(this.form.endDate).format('YYYY-MM-DD HH:mm:ss')
             }
             this.$http.post('http://127.0.0.1:8000/api/events/check', data)
               .then((response) => {
@@ -389,6 +404,7 @@
       },
       submit () {
         let data = {
+          duration: this.duration,
           client_id: this.selectedClient.id,
           name: this.form.name,
           local: this.form.local,
@@ -434,7 +450,7 @@
         this.$refs.stepper.next()
       },
       getClients () {
-        this.$http.get('http://127.0.0.1:8000/api/clients')
+        this.$http.get('http://127.0.0.1:8000/api/clients?where[status]=1')
           .then(response => {
             this.clients = response.data
           })

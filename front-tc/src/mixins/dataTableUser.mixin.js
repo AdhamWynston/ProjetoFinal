@@ -38,6 +38,7 @@ export default {
         {
           label: 'Nome',
           field: 'name',
+          type: 'string',
           width: '100px',
           sort: true,
           filter: true
@@ -61,6 +62,7 @@ export default {
           label: 'Status',
           field: 'status',
           filter: true,
+          sort: true,
           format (value) {
             if (value === 1) {
               return '<i class="material-icons text-positive">check_circle</i> Ativado'
@@ -73,6 +75,7 @@ export default {
           label: 'Cadastrado em',
           field: 'created_at',
           width: '50px',
+          type: 'date',
           sort: true,
           filter: true
         }

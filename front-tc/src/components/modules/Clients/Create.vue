@@ -33,7 +33,7 @@
             <div class="col-xs-12 col-sm-8 col-md-8">
               <q-field
                       :error="$v.client.document.$error"
-                      error-label="Este CPF já está cadastrado ou é inválido!">
+                      :error-label="documentError">
                 <template v-if="this.client.type === 1">
                   <q-input
                           v-model="documentComputed"
@@ -264,27 +264,12 @@
     computed: {
       documentComputed: {
         get: function () {
-          if (this.client && this.client.document) {
-            if (this.client.type === 1) {
-              if (this.client.document.length === 11) {
-                if (CPF.isValid(this.client.document)) {
-                  return CPF.format(this.client.document)
-                }
-                else {
-                  this.client.document = ''
-                  return Toast.create.negative('Informe um CPF válido')
-                }
-              }
-              else {
-                return CPF.format(this.client.document)
-              }
-            }
-            else {
-              return CNPJ.format(this.client.document)
-            }
+          console.log('oi')
+          if (this.client.type === 1) {
+            return CPF.format(this.client.document)
           }
           else {
-            return ''
+            return CNPJ.format(this.client.document)
           }
         },
         set: function (newValue) {

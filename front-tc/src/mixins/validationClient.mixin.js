@@ -1,13 +1,25 @@
 import { required, alpha, email, numeric, minLength } from 'vuelidate/lib/validators'
+import { CNPJ, CPF } from 'cpf_cnpj'
 export default {
   computed: {
-    nameError () {
-      if (!this.$v.employee.name.required) {
-        console.log(this.$v.employee.name.required)
+    documentError () {
+      if (!this.$v.client.document.required) {
         return 'Este campo é obrigatório!'
       }
-      else if (!this.$v.employee.name.minLength) {
-        console.log(this.$v.employee.name.minLength)
+      else if (!this.$v.client.document.isCPF) {
+        return 'Este documento não é válido'
+      }
+      else {
+        return null
+      }
+    },
+    nameError () {
+      if (!this.$v.client.name.required) {
+        console.log(this.$v.client.name.required)
+        return 'Este campo é obrigatório!'
+      }
+      else if (!this.$v.client.name.minLength) {
+        console.log(this.$v.client.name.minLength)
         return 'Preencha com nome válido!'
       }
       else {
@@ -83,7 +95,14 @@ export default {
       },
       document: { required,
         numeric,
-        minLength: minLength(11)
+        minLength: minLength(11),
+        isCPF (value) {
+          value = CPF.strip(value)
+          if (value.length === 11) {
+            return CPF.isValid(value)
+          }
+          return CNPJ.isValid(value)
+        }
       },
       phone: { required, minLength: minLength(11) },
       type: { required },

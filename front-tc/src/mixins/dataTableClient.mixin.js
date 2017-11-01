@@ -39,6 +39,7 @@ export default {
         {
           label: 'Nome',
           field: 'name',
+          type: 'string',
           width: '90px',
           sort: true,
           filter: true
@@ -79,7 +80,7 @@ export default {
         {
           label: 'Cadastrado em',
           field: 'created_at',
-          classes: 'bg-orange-2',
+          type: 'date',
           width: '50px',
           sort: true,
           filter: true

@@ -1,7 +1,11 @@
 <template>
     <div class="layout-padding">
+        <q-btn color="primary" @click="getEvents()" flat> Todos</q-btn>
+        <q-btn color="primary" @click="getEvents('where[status]=1')" flat> Em andamento</q-btn>
+        <q-btn color="primary" @click="getEvents('where[status]=2')" flat> Realizados</q-btn>
+        <q-btn color="primary" @click="getEvents('where[status]=3')" flat> Cancelados </q-btn>
         <q-data-table
-                :data="events.data || []"
+                :data="this.events"
                 :columns="columns"
                 :config="config"
                 @refresh="refresh"
@@ -9,11 +13,17 @@
             <template slot="col-created_at" scope="cell">
                 <span>{{cell.row.created_at | moment }}</span>
             </template>
+            <template slot="col-actions" scope="cell">
+                <q-btn color="primary" round @click="goManage(cell.row.id)" flat small><q-tooltip>Gerenciar Evento</q-tooltip><q-icon name="ion-gear-a"></q-icon></q-btn>
+            </template>
             <template slot="col-startDate" scope="cell">
                 <span>{{cell.row.startDate | moment }}</span>
             </template>
             <template slot="col-endDate" scope="cell">
                 <span>{{cell.row.endDate | moment }}</span>
+            </template>
+            <template slot="col-actions" scope="cell">
+                <q-btn color="primary" round @click="goManage(cell.row.id)" flat small><q-tooltip>Gerenciar Evento</q-tooltip><q-icon name="ion-gear-a"></q-icon></q-btn>
             </template>
             <template slot="selection" scope="selection">
                 <q-btn class="primary clear" @click="goTo(selection)"><q-icon name="remove_red_eye"></q-icon>Visualizar Registro</q-btn>
@@ -34,6 +44,7 @@
     import dataTableEventMixin from '../../../mixins/dataTableEvent.mixin'
     import moment from 'moment'
     import {
+      QOptionGroup,
       QIcon,
       QFixedPosition,
       QFab,
@@ -53,17 +64,27 @@
       mixins: [dataTableEventMixin],
       data () {
         return {
-          client: ''
+          client: '',
+          events: []
         }
       },
       computed: {
-        events () {
-          return this.$store.state.events.list
-        }
       },
       methods: {
+        computedHours (start) {
+          console.log(start)
+        },
+        getEvents (param) {
+          this.$http.get('http://127.0.0.1:8000/api/events?' + param)
+            .then((response) => {
+              this.events = response.data
+            })
+        },
         goCreate () {
           return this.$router.push('/events/create')
+        },
+        goManage (id) {
+          return this.$router.push('/events/' + id + '/manage')
         },
         goTo (item) {
           let id = item.rows[0].data.id
@@ -76,7 +97,7 @@
         }
       },
       mounted () {
-        this.$store.dispatch('eventsList')
+        this.getEvents()
       },
       filters: {
         moment: function (date) {
@@ -111,6 +132,7 @@
         }
       },
       components: {
+        QOptionGroup,
         QIcon,
         QFixedPosition,
         QFab,
