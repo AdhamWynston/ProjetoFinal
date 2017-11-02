@@ -2,12 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="124f7a0b-95e1-4527-90b1-c849a2ce6cbd" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/blade.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/front" afterPath="$PROJECT_DIR$/front" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/laravel-tc" afterPath="$PROJECT_DIR$/laravel-tc" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/front/src/main.js" afterPath="$PROJECT_DIR$/front/src/main.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/jsLinters/jshint.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/laravel-tc" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/Projeto.iml" afterPath="$PROJECT_DIR$/.idea/Projeto.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/front-tc/package-lock.json" afterPath="$PROJECT_DIR$/front-tc/package-lock.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/front-tc/package.json" afterPath="$PROJECT_DIR$/front-tc/package.json" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -16,7 +17,6 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileColors">
     <fileColor scope="Non-Project Files (Material Default)" color="2E3C43" />
     <fileColor scope="Non-Project Files (Material Darker)" color="323232" />
@@ -24,35 +24,70 @@
     <fileColor scope="Non-Project Files (Material Palenight)" color="2f2e43" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file leaf-file-name="main.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/front/src/main.js">
+        <entry file="file://$PROJECT_DIR$/front-tc/src/main.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="6" lean-forward="false" selection-start-line="0" selection-start-column="6" selection-end-line="0" selection-end-column="6" />
+            <state relative-caret-position="138">
+              <caret line="12" column="21" lean-forward="true" selection-start-line="12" selection-start-column="21" selection-end-line="12" selection-end-column="21" />
               <folding>
-                <element signature="e#0#21#0" expanded="true" />
+                <marker date="1509621015758" expanded="true" signature="0:262" ph="//..." />
+                <marker date="1509621015758" expanded="true" signature="343:492" ph="//..." />
+                <marker date="1509621015758" expanded="true" signature="501:779" ph="..." />
+                <marker date="1509621015758" expanded="true" signature="991:1012" ph="{&quot;locale&quot;: 'pt_BR'...}" />
+                <marker date="1509621015758" expanded="true" signature="1101:1117" ph="{...}" />
+                <marker date="1509621015758" expanded="true" signature="1125:1206" ph="{...}" />
+                <marker date="1509621015758" expanded="true" signature="1266:1275" ph="{...}" />
+                <marker date="1509621015758" expanded="true" signature="1289:1569" ph="{...}" />
+                <marker date="1509621015758" expanded="true" signature="1376:1434" ph="{...}" />
+                <marker date="1509621015758" expanded="true" signature="1465:1565" ph="{...}" />
+                <marker date="1509621015758" expanded="true" signature="1482:1559" ph="..." />
+                <marker date="1509621015758" expanded="true" signature="1612:1622" ph="{...}" />
+                <marker date="1509621015758" expanded="true" signature="1661:1699" ph="{...}" />
+                <marker date="1509621015758" expanded="true" signature="1750:1763" ph="{...}" />
+                <marker date="1509621015758" expanded="true" signature="1782:1897" ph="{...}" />
+                <marker date="1509621015758" expanded="true" signature="1852:1893" ph="{...}" />
+                <marker date="1509621015758" expanded="true" signature="1934:1976" ph="{...}" />
+                <marker date="1509621015758" expanded="false" signature="2007:2104" ph="..." />
+                <marker date="1509621015758" expanded="true" signature="2106:2133" ph="/*...*/" />
+                <marker date="1509621015758" expanded="true" signature="2142:2192" ph="{&quot;el&quot;: '##q-app'...}" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="UsersController.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/laravel-tc/app/Http/Controllers/Admin/UsersController.php">
+      <file leaf-file-name="jwt-token.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/front-tc/src/services/jwt-token.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="317">
-              <caret line="57" column="28" lean-forward="true" selection-start-line="57" selection-start-column="28" selection-end-line="57" selection-end-column="28" />
-              <folding />
+            <state relative-caret-position="736">
+              <caret line="33" column="2" lean-forward="false" selection-start-line="33" selection-start-column="2" selection-end-line="33" selection-end-column="2" />
+              <folding>
+                <marker date="1509621015840" expanded="false" signature="7:73" ph="..." />
+                <marker date="1509621015840" expanded="true" signature="110:184" ph="{...}" />
+                <marker date="1509621015840" expanded="true" signature="223:896" ph="{...}" />
+                <marker date="1509621015840" expanded="true" signature="240:280" ph="{...}" />
+                <marker date="1509621015840" expanded="true" signature="302:379" ph="{...}" />
+                <marker date="1509621015840" expanded="true" signature="398:471" ph="{...}" />
+                <marker date="1509621015840" expanded="true" signature="508:638" ph="{...}" />
+                <marker date="1509621015840" expanded="true" signature="583:597" ph="{...}" />
+                <marker date="1509621015840" expanded="true" signature="657:812" ph="{...}" />
+                <marker date="1509621015840" expanded="true" signature="692:723" ph="{...}" />
+                <marker date="1509621015840" expanded="true" signature="842:894" ph="{...}" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="App.vue" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/front/src/App.vue">
+      <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/front-tc/src/persistence/index.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="0">
               <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
+              <folding>
+                <marker date="1509621015828" expanded="true" signature="72:215" ph="{...}" />
+                <marker date="1509621015828" expanded="true" signature="135:163" ph="{...}" />
+                <marker date="1509621015828" expanded="true" signature="186:212" ph="{...}" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -67,14 +102,26 @@
       <list>
         <option value="$PROJECT_DIR$/laravel-tc/app/Http/Controllers/Admin/UsersController.php" />
         <option value="$PROJECT_DIR$/front/src/main.js" />
+        <option value="$PROJECT_DIR$/front-tc/package.json" />
+        <option value="$PROJECT_DIR$/front-tc/src/main.js" />
       </list>
     </option>
   </component>
   <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
   <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsFlowSettings">
+    <service-enabled>true</service-enabled>
+    <exe-path />
+    <annotation-enable>false</annotation-enable>
+    <other-services-enabled>true</other-services-enabled>
+    <auto-save>true</auto-save>
+  </component>
   <component name="JsGulpfileManager">
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
+  </component>
+  <component name="NodeModulesDirectoryManager">
+    <handled-path value="$PROJECT_DIR$/front-tc/node_modules" />
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
   <component name="ProjectFrameBounds">
@@ -98,63 +145,53 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Projeto" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Projeto" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Projeto" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Projeto" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="front" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Projeto" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Projeto" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="front" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
+          <expand>
+            <path>
+              <item name="ProjetoFinal" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ProjetoFinal" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="ProjetoFinal" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ProjetoFinal" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="front-tc" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="ProjetoFinal" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ProjetoFinal" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="front-tc" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="src" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="ProjetoFinal" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ProjetoFinal" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="front-tc" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="src" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="services" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+          </expand>
+          <select />
         </subPane>
       </pane>
       <pane id="Scratches" />
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="C:/laragon/www/projeto" />
     <property name="nodejs_interpreter_path" value="C:/Program Files/nodejs/node" />
     <property name="node.js.path.for.package.jscs" value="project" />
     <property name="node.js.detected.package.jscs" value="true" />
     <property name="node.js.selected.package.jscs" value="" />
+    <property name="settings.editor.selected.configurable" value="settings.javascript.linters.eslint" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.selected.package.eslint" value="C:\Users\Adham\Documents\GitHub\ProjetoFinal\front-tc\node_modules\eslint" />
+    <property name="node.js.path.for.package.standard" value="project" />
+    <property name="node.js.detected.package.standard" value="true" />
+    <property name="node.js.selected.package.standard" value="" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -184,11 +221,15 @@
       <option name="presentableId" value="Default" />
       <updated>1505691595993</updated>
       <workItem from="1505691632255" duration="1389000" />
+      <workItem from="1509621610969" duration="1179000" />
+      <workItem from="1509643616970" duration="13000" />
+      <workItem from="1509646730029" duration="598000" />
+      <workItem from="1509647369814" duration="1174000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1389000" />
+    <option name="totallyTimeSpent" value="4353000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="2" width="1378" height="733" extended-state="0" />
@@ -196,66 +237,166 @@
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2496329" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32943144" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
-    <option name="processedProjectFiles" value="true" />
+    <option name="version" value="1" />
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager />
+    <breakpoint-manager>
+      <option name="time" value="1" />
+    </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/front/src/App.vue">
+    <entry file="file://$PROJECT_DIR$/front-tc/package.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state relative-caret-position="138">
+          <caret line="6" column="39" lean-forward="false" selection-start-line="6" selection-start-column="39" selection-end-line="6" selection-end-column="39" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/front/src/routes.js">
+    <entry file="file://$PROJECT_DIR$/front-tc/src/main.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state relative-caret-position="345">
+          <caret line="15" column="21" lean-forward="false" selection-start-line="15" selection-start-column="21" selection-end-line="15" selection-end-column="21" />
           <folding>
-            <element signature="e#0#21#0" expanded="false" />
+            <marker date="1509621015758" expanded="true" signature="0:262" ph="//..." />
+            <marker date="1509621015758" expanded="true" signature="343:492" ph="//..." />
+            <marker date="1509621015758" expanded="true" signature="501:779" ph="..." />
+            <marker date="1509621015758" expanded="true" signature="991:1012" ph="{&quot;locale&quot;: 'pt_BR'...}" />
+            <marker date="1509621015758" expanded="true" signature="1101:1117" ph="{...}" />
+            <marker date="1509621015758" expanded="true" signature="1125:1206" ph="{...}" />
+            <marker date="1509621015758" expanded="true" signature="1266:1275" ph="{...}" />
+            <marker date="1509621015758" expanded="true" signature="1289:1569" ph="{...}" />
+            <marker date="1509621015758" expanded="true" signature="1376:1434" ph="{...}" />
+            <marker date="1509621015758" expanded="true" signature="1465:1565" ph="{...}" />
+            <marker date="1509621015758" expanded="true" signature="1482:1559" ph="..." />
+            <marker date="1509621015758" expanded="true" signature="1612:1622" ph="{...}" />
+            <marker date="1509621015758" expanded="true" signature="1661:1699" ph="{...}" />
+            <marker date="1509621015758" expanded="true" signature="1750:1763" ph="{...}" />
+            <marker date="1509621015758" expanded="true" signature="1782:1897" ph="{...}" />
+            <marker date="1509621015758" expanded="true" signature="1852:1893" ph="{...}" />
+            <marker date="1509621015758" expanded="true" signature="1934:1976" ph="{...}" />
+            <marker date="1509621015758" expanded="false" signature="2007:2104" ph="..." />
+            <marker date="1509621015758" expanded="true" signature="2106:2133" ph="/*...*/" />
+            <marker date="1509621015758" expanded="true" signature="2142:2192" ph="{&quot;el&quot;: '##q-app'...}" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/laravel-tc/app/Http/Controllers/Admin/UsersController.php">
+    <entry file="file://$PROJECT_DIR$/front-tc/package.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="317">
-          <caret line="57" column="28" lean-forward="true" selection-start-line="57" selection-start-column="28" selection-end-line="57" selection-end-column="28" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/front/src/main.js">
+    <entry file="file://$PROJECT_DIR$/front-tc/package.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
-          <caret line="0" column="6" lean-forward="false" selection-start-line="0" selection-start-column="6" selection-end-line="0" selection-end-column="6" />
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/front/src/App.vue" />
+    <entry file="file://$PROJECT_DIR$/front/src/routes.js" />
+    <entry file="file://$PROJECT_DIR$/laravel-tc/app/Http/Controllers/Admin/UsersController.php" />
+    <entry file="file://$PROJECT_DIR$/front/src/main.js" />
+    <entry file="file://$PROJECT_DIR$/front-tc/package.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="23">
+          <caret line="6" column="39" lean-forward="false" selection-start-line="6" selection-start-column="39" selection-end-line="6" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/front-tc/src/services/jwt-token.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="736">
+          <caret line="33" column="2" lean-forward="false" selection-start-line="33" selection-start-column="2" selection-end-line="33" selection-end-column="2" />
           <folding>
-            <element signature="e#0#21#0" expanded="true" />
+            <marker date="1509621015840" expanded="false" signature="7:73" ph="..." />
+            <marker date="1509621015840" expanded="true" signature="110:184" ph="{...}" />
+            <marker date="1509621015840" expanded="true" signature="223:896" ph="{...}" />
+            <marker date="1509621015840" expanded="true" signature="240:280" ph="{...}" />
+            <marker date="1509621015840" expanded="true" signature="302:379" ph="{...}" />
+            <marker date="1509621015840" expanded="true" signature="398:471" ph="{...}" />
+            <marker date="1509621015840" expanded="true" signature="508:638" ph="{...}" />
+            <marker date="1509621015840" expanded="true" signature="583:597" ph="{...}" />
+            <marker date="1509621015840" expanded="true" signature="657:812" ph="{...}" />
+            <marker date="1509621015840" expanded="true" signature="692:723" ph="{...}" />
+            <marker date="1509621015840" expanded="true" signature="842:894" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/front-tc/src/services/localstorage.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/front-tc/src/persistence/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <marker date="1509621015828" expanded="true" signature="72:215" ph="{...}" />
+            <marker date="1509621015828" expanded="true" signature="135:163" ph="{...}" />
+            <marker date="1509621015828" expanded="true" signature="186:212" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/front-tc/src/main.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="138">
+          <caret line="12" column="21" lean-forward="true" selection-start-line="12" selection-start-column="21" selection-end-line="12" selection-end-column="21" />
+          <folding>
+            <marker date="1509621015758" expanded="true" signature="0:262" ph="//..." />
+            <marker date="1509621015758" expanded="true" signature="343:492" ph="//..." />
+            <marker date="1509621015758" expanded="true" signature="501:779" ph="..." />
+            <marker date="1509621015758" expanded="true" signature="991:1012" ph="{&quot;locale&quot;: 'pt_BR'...}" />
+            <marker date="1509621015758" expanded="true" signature="1101:1117" ph="{...}" />
+            <marker date="1509621015758" expanded="true" signature="1125:1206" ph="{...}" />
+            <marker date="1509621015758" expanded="true" signature="1266:1275" ph="{...}" />
+            <marker date="1509621015758" expanded="true" signature="1289:1569" ph="{...}" />
+            <marker date="1509621015758" expanded="true" signature="1376:1434" ph="{...}" />
+            <marker date="1509621015758" expanded="true" signature="1465:1565" ph="{...}" />
+            <marker date="1509621015758" expanded="true" signature="1482:1559" ph="..." />
+            <marker date="1509621015758" expanded="true" signature="1612:1622" ph="{...}" />
+            <marker date="1509621015758" expanded="true" signature="1661:1699" ph="{...}" />
+            <marker date="1509621015758" expanded="true" signature="1750:1763" ph="{...}" />
+            <marker date="1509621015758" expanded="true" signature="1782:1897" ph="{...}" />
+            <marker date="1509621015758" expanded="true" signature="1852:1893" ph="{...}" />
+            <marker date="1509621015758" expanded="true" signature="1934:1976" ph="{...}" />
+            <marker date="1509621015758" expanded="false" signature="2007:2104" ph="..." />
+            <marker date="1509621015758" expanded="true" signature="2106:2133" ph="/*...*/" />
+            <marker date="1509621015758" expanded="true" signature="2142:2192" ph="{&quot;el&quot;: '##q-app'...}" />
           </folding>
         </state>
       </provider>
