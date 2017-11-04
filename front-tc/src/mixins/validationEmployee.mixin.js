@@ -40,21 +40,7 @@ export default {
     employee: {
       email: { required, email },
       name: { required,
-        minLength: minLength(3),
-        async isUnique (value) {
-          let id
-          if (value === '') {
-            return true
-          }
-          if (this.$route.params.id) {
-            id = this.$route.params.id
-          }
-          else {
-            id = 0
-          }
-          const response = await fetch(`http://127.0.0.1:8000/api/employees/${value}/` + id)
-          return Boolean(await response.json())
-        }
+        minLength: minLength(3)
       },
       document: { required,
         numeric,

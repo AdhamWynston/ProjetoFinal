@@ -245,6 +245,12 @@
     QIcon
   } from 'quasar'
   import moment from 'moment'
+  function show (options) {
+    Loading.show(options)
+    setTimeout(() => {
+      Loading.hide()
+    }, 3000)
+  }
   export default {
     mixins: [statesMixin],
     data () {
@@ -417,12 +423,11 @@
           endDate: moment(this.form.endDate).format('YYYY-MM-DD HH:mm:ss')
         }
         if (this.$v.form.$invalid === false) {
+          show()
           this.$store.dispatch('eventInsert', data)
             .then((response) => {
               console.log(response)
-              Loading.show()
               this.$router.push('/events')
-              this.closeLoading()
               Toast.create.positive({
                 html: 'Evento cadastrado com sucesso!',
                 icon: 'done'

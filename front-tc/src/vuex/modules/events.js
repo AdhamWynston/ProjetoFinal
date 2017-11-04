@@ -4,6 +4,7 @@ import Vue from 'vue'
 export default {
   state: {
     list: [],
+    employeeList: [],
     one: {}
   },
   mutations: {
@@ -27,6 +28,15 @@ export default {
           context.commit('update', {
             state: 'one',
             data: res.data
+          })
+        })
+    },
+    employeesManageList (context) {
+      return Vue.http.get('http://127.0.0.1:8000/api/employees?where[status]=1')
+        .then((res) => {
+          context.commit('update', {
+            state: 'employeeList',
+            data: res
           })
         })
     },

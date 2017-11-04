@@ -52,9 +52,9 @@
                     </q-item>
                 </div>
             </q-collapsible>
-            <template v-show="">
+            <template >
                 <q-data-table
-                        :data="this.employees || []"
+                        :data="employeesList.data || []"
                         :columns="columns"
                         :config="config"
                         @refresh="refresh"
@@ -63,8 +63,8 @@
                     <template slot="col-created_at" scope="cell">
                         <span>{{cell.row.created_at | moment }}</span>
                     </template>
-                    <template slot="selection" scope="selection">
-                        <span>ava</span>
+                    <template slot="col-select" scope="cell">
+                      <q-checkbox v-model="check_employee" @input="confirme" :disable="vvv" :val="cell.row.id"/>
                     </template>
                     <template slot="selection" scope="selection">
                         <q-btn class="primary clear" @click="goTo(selection)"><q-icon name="remove_red_eye"></q-icon>Salvar registros</q-btn>
@@ -80,6 +80,7 @@
     import dataTableEventMixin from '../../../mixins/dataTableManageEvent'
     import { CNPJ, CPF } from 'cpf_cnpj'
     import {
+      Dialog,
       QDataTable,
       QFixedPosition,
       QFab,
@@ -126,6 +127,7 @@
         return {
           client: {},
           employees: [],
+          check_employee: [],
           check_row: false,
           checked: 0
         }
@@ -156,16 +158,28 @@
         }
       },
       computed: {
+        confirme () {
+          if (this.check_employee.length === 3) {
+          }
+        },
+        vvv () {
+          if (this.check_employee.length === 3) {
+            return true
+          }
+          else {
+            return false
+          }
+        },
         employeesList () {
-          return this.$store.state.employees.list
+          return this.$store.state.events.employeeList
         },
         event () {
           return this.$store.state.events.one || {}
         }
       },
       mounted () {
-        this.getEmployees()
         this.$store.dispatch('eventsGet', this.$route.params.id)
+        this.$store.dispatch('employeesManageList')
       },
       filters: {
         moment: function (date) {

@@ -11,7 +11,6 @@ export default {
         bodyStyle: {
           maxHeight: '500px'
         },
-        selection: 'multiple',
         rowHeight: '40px',
         responsive: true,
         messages: {
@@ -32,6 +31,11 @@ export default {
         }
       },
       columns: [
+        {
+          label: '#',
+          field: 'select',
+          width: '20px'
+        },
         {
           label: 'Nome',
           field: 'name',

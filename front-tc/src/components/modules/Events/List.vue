@@ -62,6 +62,7 @@
       data () {
         return {
           client: '',
+          filtro: '',
           events: []
         }
       },
@@ -95,6 +96,7 @@
       },
       mounted () {
         this.getEvents()
+        this.$store.dispatch('eventsList', '')
       },
       filters: {
         moment: function (date) {

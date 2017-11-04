@@ -10,7 +10,6 @@
                       :error-label="nameError"
               >
                 <q-input
-                        :error="$v.employee.name.$error"
                         max-length="100"
                         v-model="employee.name"
                         float-label="Nome Completo"
@@ -250,6 +249,9 @@
           Toast.create.negative('Verifique os dados')
         }
       }
+    },
+    mounted () {
+      this.$store.dispatch('employeesGet', this.$route.params.id)
     },
     computed: {
       employee () {
